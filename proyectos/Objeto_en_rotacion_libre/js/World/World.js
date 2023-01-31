@@ -3,13 +3,14 @@ import { createCube } from './components/cube.js';
 import { createScene } from './components/scene.js';
 import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
+import { createPostprocessing } from "./systems/postprocessing.js";
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import {createAxes } from "./components/axes.js"
 import {createLights } from "./components/lights.js"
 import { createPoints } from "./components/points.js";
 import {loadObject} from "./components/objects.js"
-import {Group} from "../../../../../three.js-master/build/three.module.js"; 
+import {agrupar} from "./systems/agrupar.js"
 import { createTrail } from "./components/line.js";
 // These variables are module-scoped: we cannot access them
 // from outside the module
@@ -17,16 +18,17 @@ let camera;
 let renderer;
 let scene;
 let loop;
-let axes
+let axes;
+let composer
 class World {
 
   constructor(container) {
-    const group = new Group();
-
+    
     camera = createCamera();
     scene = createScene();
        
     renderer = createRenderer();
+    composer = createPostprocessing(scene, camera, renderer);
 
     axes = createAxes(200);
     container.append(renderer.domElement);
@@ -36,15 +38,17 @@ class World {
     const [rotor,edges] = createCube();
     const point = createPoints();
     const trail = createTrail();
-    
-    group.add(point,rotor,edges);
 
-    loop = new Loop(camera, scene, renderer,controls);
+   
+    
+
+
+    loop = new Loop(camera, scene, renderer,composer,controls);
         
     loop.updatables.push(rotor,edges,point);
     
      
-    scene.add(axes,light,ambientLight,group);
+    scene.add(axes, agrupar(point,rotor,edges))
 
     const resizer = new Resizer(container, camera, renderer);
   }

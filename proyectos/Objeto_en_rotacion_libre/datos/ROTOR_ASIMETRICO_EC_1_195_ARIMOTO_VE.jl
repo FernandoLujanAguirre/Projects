@@ -42,7 +42,7 @@ u3_0=0.01
 du3_0=0.0
 
 u0=[u1_0,du1_0,u2_0,du2_0,u3_0,du3_0]
-tspan = (0.0,50)
+tspan = (0.0,100)
 prob = ODEProblem(rotor!,u0,tspan,dt=0.001,saveat=0.001)
 sol = solve(prob)
 df=DataFrame(sol)
