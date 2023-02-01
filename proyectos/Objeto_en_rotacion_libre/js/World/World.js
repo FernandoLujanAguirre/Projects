@@ -12,6 +12,7 @@ import { createPoints } from "./components/points.js";
 import {loadObject} from "./components/objects.js"
 import {agrupar} from "./systems/agrupar.js"
 import { createTrail } from "./components/line.js";
+import { FrameBar } from './systems/FramesBar.js';
 // These variables are module-scoped: we cannot access them
 // from outside the module
 let camera;
@@ -19,7 +20,8 @@ let renderer;
 let scene;
 let loop;
 let axes;
-let composer
+let composer;
+let stats;
 class World {
 
   constructor(container) {
@@ -33,17 +35,15 @@ class World {
     axes = createAxes(200);
     container.append(renderer.domElement);
 
+    stats = FrameBar();
+
     const [light,ambientLight] = createLights();
     const controls = createControls(camera, renderer.domElement);
     const [rotor,edges] = createCube();
     const point = createPoints();
     const trail = createTrail();
 
-   
-    
-
-
-    loop = new Loop(camera, scene, renderer,composer,controls);
+    loop = new Loop(camera, scene, renderer,composer,null,stats);
         
     loop.updatables.push(rotor,edges,point);
     
@@ -51,6 +51,9 @@ class World {
     scene.add(axes, agrupar(point,rotor,edges))
 
     const resizer = new Resizer(container, camera, renderer);
+    resizer.onResize = () => {
+      this.render();
+    }
   }
 
   async init() {
