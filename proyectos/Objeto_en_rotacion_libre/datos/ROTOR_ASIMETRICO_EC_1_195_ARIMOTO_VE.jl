@@ -56,7 +56,7 @@ end
 #CSV.write("datos_rotor.csv",df)
 
 pos=plot(sol,idxs=[1,3,5],label=[L"$x_1$" L"$x_3$" L"$x_5$"],linewidth=2)
-#vel=plot(sol,idxs=[2,4,6])
+vel=plot(sol,idxs=[2,4,6],label=[L"$x_2$" L"$x_4$" L"$x_6$"],linewidth=2)
 
 display(pos)
-#display(vel)
+display(vel)
