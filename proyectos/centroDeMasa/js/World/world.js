@@ -28,7 +28,7 @@ class World {
     renderer = createRenderer();
 
 
-    axes = createAxes(10);
+    axes = createAxes(1.2);
     container.append(renderer.domElement);
 
     stats = FrameBar();
@@ -37,9 +37,10 @@ class World {
     const controls = createControls(camera, renderer.domElement);
  
     const [s1,s2,s3,s4] = createMases();
-    const vector = VectorcentroMasa();
 
-    scene.add(axes,s1,s2,s3,s4,vector)
+    const [CM,Fuerza1,Fuerza2,M1,M2,Resultante] = VectorcentroMasa(s1.position,s2.position,s3.position,s4.position);
+
+    scene.add(axes,s1,s2,s3,s4,CM,Fuerza1,Fuerza2,M1,M2,Resultante)
 
 
     
