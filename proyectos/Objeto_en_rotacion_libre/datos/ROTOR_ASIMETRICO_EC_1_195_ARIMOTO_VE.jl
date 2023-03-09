@@ -49,7 +49,7 @@ df=DataFrame(sol)
 json_str = JSON.json(df)
 
 # write the JSON string to a file
-open("datos_rotor.json", "w") do io
+open("./proyectos/Objeto_en_rotacion_libre/datos/datos_rotor.json", "w") do io
     write(io, json_str)
 end
 
