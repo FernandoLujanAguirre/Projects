@@ -1,6 +1,6 @@
-import { Clock, LineBasicMaterial, BufferGeometry,Line, Vector3, Points, Euler,Quaternion } from "../../../../../three.js-master/build/three.module.js";
+import { Clock, LineBasicMaterial, BufferGeometry,Line, Vector3, Points, Euler,Quaternion, ArrowHelper } from "../../../../../three.js-master/build/three.module.js";
 import {buscarDatos} from "../../buscar_datos.js"
-
+import { flecha } from "../components/flecha.js";
 const clock = new Clock();
 
 const initquaternion = new Quaternion();
@@ -37,13 +37,26 @@ class Loop {
             const a2 = buscarDatos(time.toFixed(2),"a2");
             const a3 = buscarDatos(time.toFixed(2),"a3");
             
+            const omegax = buscarDatos(time.toFixed(2),"omegax");
+            const omegay = buscarDatos(time.toFixed(2),"omegay");
+            const omegaz = buscarDatos(time.toFixed(2),"omegaz");
+        
+            
+       
             let quaternion = new Quaternion();
 
             quaternion.fromArray([a1,a2,a3,a0])
-            for (const iter of this.updatables) {
-            iter.quaternion.copy(quaternion)
-    
+            const lengthVec = Math.sqrt(omegax**2+omegay**2+omegaz**2);// Calculates the length of vector V
+            this.updatables[3].setDirection(new Vector3(omegax/lengthVec,omegay/lengthVec,omegaz/lengthVec))
+            this.updatables[3].setLength(Math.sqrt(omegax**2+omegay**2+omegaz**2)/8)
            
+            for (const iter of this.updatables) {
+            if (iter.type!="ArrowHelper"){
+            iter.quaternion.copy(quaternion)
+            }else{
+           
+            }
+                      
             }
 
 
@@ -54,8 +67,9 @@ class Loop {
 
              
             
+            
         this.renderer.render(this.scene, this.camera);
-        //this.composer.render();
+       
         });
       }
     }
