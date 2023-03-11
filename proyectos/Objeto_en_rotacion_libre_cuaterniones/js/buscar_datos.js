@@ -11,18 +11,23 @@ function buscarDatos(tiempoActual,eje){
     
     if (datos.timestamp[i] == tiempoActual){
       donde =  i;
-       switch (eje){
-      case "a0":
-      const x = datos.value4[i];
-      return(x);
-      case "a1":
-      return(datos.value5[i]);
-      case "a2":
-      return(datos.value6[i]);
-      case "a3":
-      return(datos.value7[i]);
-      case "alert":
-      return(0);
+      switch (eje){
+        case "omegax":
+          return(datos.value1[i])
+        case "omegay":
+          return(datos.value2[i])
+        case "omegaz":
+          return(datos.value3[i])
+        case "a0":
+          return(datos.value4[i]);
+        case "a1":
+          return(datos.value5[i]);
+        case "a2":
+          return(datos.value6[i]);
+        case "a3":
+          return(datos.value7[i]);
+        case "alert":
+         return(0);
       
         }
 
