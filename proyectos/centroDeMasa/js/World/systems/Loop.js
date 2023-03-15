@@ -6,14 +6,16 @@ const clock = new Clock();
 let time = 0;
 let alert = 0;
 class Loop {
-    constructor(camera, scene, renderer, controls,stats) {
+    constructor(camera, scene, renderer, controls,stats,cssRenderer,cameracss,scenecss) {
       this.camera = camera;
       this.scene = scene;
       this.renderer = renderer;
       this.controls = controls;
       this.stats = stats;
       this.updatables = [];
-      
+      this.cssRenderer = cssRenderer;
+      this.cameracss = cameracss;
+      this.scenecss = scenecss;
     }
 
     start() {
@@ -111,8 +113,9 @@ class Loop {
             this.updatables[15].rotation.x=(theta*Math.PI/180)
             //console.log(normRes)
 
-
+            //this.cssRenderer.render(this.scenecss,this.cameracss);
         this.renderer.render(this.scene, this.camera);
+        
         //this.composer.render();
         });
       }
