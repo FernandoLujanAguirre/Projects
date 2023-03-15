@@ -10,7 +10,7 @@ import { FrameBar } from './systems/FramesBar.js';
 import {createMases} from "./components/mases.js"
 import { VectorcentroMasa } from './components/centro.js';
 import { cilindros } from './components/cilindro.js';
-
+import { css3d } from './components/etiquetas.js';
 // These variables are module-scoped: we cannot access them
 // from outside the module
 let camera;
@@ -19,18 +19,18 @@ let scene;
 let loop;
 let axes;
 let stats;
-let gui;
-
+let cssRenderer;
+let cameracss; 
+let scenecss;
 class World {
 
   constructor(container) {
 
     camera = createCamera();
     scene = createScene();
-       
     renderer = createRenderer();
-
-
+   // [cssRenderer,cameracss,scenecss] = css3d(container);
+ 
     axes = createAxes(1.2);
     container.append(renderer.domElement);
 
@@ -47,7 +47,7 @@ class World {
 
 
     
-    loop = new Loop(camera, scene, renderer,controls,stats);
+    loop = new Loop(camera, scene, renderer,controls,stats,cssRenderer,cameracss,scenecss);
       //R1 11
     loop.updatables.push(s1,CM,Fuerza1,M1,M2,Resultante,Fuerza2,Fuerza3,Fuerza4,M3,M4,R1,R2,R3,R4,cil3);
     

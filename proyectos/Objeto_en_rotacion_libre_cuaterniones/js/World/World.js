@@ -13,7 +13,6 @@ import {agrupar} from "./systems/agrupar.js"
 import { createTrail } from "./components/line.js";
 import { FrameBar } from './systems/FramesBar.js';
 import { flecha } from './components/flecha.js';
-import { GUI } from "../../../../dat.gui-master/build/dat.gui.module.js"// These variables are module-scoped: we cannot access them
 // from outside the module
 let camera;
 let renderer;
@@ -22,7 +21,6 @@ let loop;
 let axes;
 let composer;
 let stats;
-let gui
 class World {
 
   constructor(container) {
