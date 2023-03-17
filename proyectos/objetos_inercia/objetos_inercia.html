@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>Tensores de inercia</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+
+  <link rel="icon" href="../../cicese.ico" type="image/x-icon">
+
+  <link href="./styles/objetos_inercia.css" rel="stylesheet" type="text/css">
+
+  <script type="module" src="./js/cubo.js"></script>
+  <script type="module" src="./js/esfera.js"></script>
+  <script type="module" src="./js/cono.js"></script>
+</head>
+
+<body>
+  <h1>Tensores de inercia</h1>
+
+<div>
+  <div id="scene-container1">
+    <!-- Our <canvas> will be inserted here -->
+      </div>
+  <div id="scene-container2">
+    <!-- Our <canvas> will be inserted here -->
+  </div>
+  <div id="scene-container3">
+    <!-- Our <canvas> will be inserted here -->
+  </div>
+  <div id="tensor1">El tensor de inercia de un cubo es igual a
+    \[J_{cubo}=\begin{bmatrix}\frac{1}{12}\mu(w^2 + h^2)&0&0\\0&\frac{1}{12}\mu(w^2 + d^2)&0\\0&0&\frac{1}{12}\mu(h^2 + d^2) \end{bmatrix} \]
+    donde \(w\) es el ancho del prisma, \(h\) es la altura \(d \) el largo.</div>
+</div>
+<div id="tensor2">El tensor de inercia de una esfera es igual a
+  \[J_{cubo}=\begin{bmatrix}\frac{2}{5}\mu(r^2)&0&0\\0&\frac{2}{5}\mu(r^2)&0\\0&0&\frac{2}{5}\mu(r^2) \end{bmatrix} \]
+  donde \(w\) es el ancho del prisma, \(h\) es la altura \(d \) el largo.</div>
+</div><div id="tensor3">El tensor de inercia de una esfera es igual a
+  \[J_{cubo}=\begin{bmatrix}\frac{2}{5}\mu(r^2)&0&0\\0&\frac{2}{5}\mu(r^2)&0\\0&0&\frac{2}{5}\mu(r^2) \end{bmatrix} \]
+  donde \(w\) es el ancho del prisma, \(h\) es la altura \(d \) el largo.</div>
+
+</body>
+
+</html>
