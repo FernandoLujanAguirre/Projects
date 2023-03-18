@@ -1,13 +1,13 @@
-import { createCamera } from '../js/World/Components/camera.js';
-import { createScene } from '../js/World/Components/scene.js';
-import { createControls } from '../js/World/Systems/controls.js';
-import { createRenderer } from '../js/World/Systems/renderer.js';
-import { Resizer } from '../js/World/Systems/Resizer.js';
-import { Loop } from './Loop.js';
-import {createCube} from "../js/World/Components/createCube.js"
-import {createAxes } from "../js/World/Components/axes.js"
-import {createLights } from "../js/World/Components/lights.js"
-import { FrameBar } from '../js/World/Systems/FramesBar.js';
+import { createCamera } from '../../js/World/Components/camera.js';
+import { createScene } from '../../js/World/Components/scene.js';
+import { createControls } from '../../js/World/Systems/controls.js';
+import { createRenderer } from '../../js/World/Systems/renderer.js';
+import { Resizer } from '../../js/World/Systems/Resizer.js';
+import { Loop } from './systems/Loop.js';
+import {createCube} from "../../js/World/Components/createCube.js"
+import {createAxes } from "../../js/World/Components/axes.js"
+import {createLights } from "../../js/World/Components/lights.js"
+import { FrameBar } from '../../js/World/Systems/FramesBar.js';
 // from outside the module
 let camera;
 let renderer;

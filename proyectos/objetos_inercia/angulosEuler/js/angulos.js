@@ -1,4 +1,4 @@
-import { World } from "./WorldAngulos.js";
+import { World } from "../World/WorldAngulos.js";
 
 async function main() {
   // Get a reference to the container element
