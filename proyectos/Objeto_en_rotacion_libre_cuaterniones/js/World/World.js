@@ -36,7 +36,7 @@ class World {
 
     stats = FrameBar();
 
-    const [mainLight,ambientLight] = createLights();
+    const [mainLight,ambientLight,spotLight,spotLightHelper] = createLights();
     const controls = createControls(camera, renderer.domElement);
     const [rotor,edges] = createCube();
     const point = createPoints();
@@ -49,7 +49,7 @@ class World {
     loop.updatables.push(rotor,edges,point,omega);
     
      
-    scene.add(axes,point,rotor,omega,mainLight,ambientLight)
+    scene.add(axes,point,rotor,omega,mainLight,spotLight)
 
     const resizer = new Resizer(container, camera, renderer);
     resizer.onResize = () => {
