@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy" : "gh-pages -d ./"
+    "deploy": "gh-pages -d ./"
   },
   "dependencies": {
     "array-union": "^1.0.2",
@@ -52,7 +52,6 @@
     "universalify": "^0.1.2",
     "wrappy": "^1.0.2"
   },
-
   "author": "",
   "license": "ISC"
 }
