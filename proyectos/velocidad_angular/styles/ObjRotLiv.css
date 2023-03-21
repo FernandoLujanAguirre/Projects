@@ -9,7 +9,8 @@ body {
   font-family: Sans-Serif;
 
   /* color text */
-  color: #FFEBB7;
+  color: #000000;
+  background-color: white;
 }
 
 h1 {

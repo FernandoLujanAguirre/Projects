@@ -5,7 +5,7 @@ function crearFlechas(elementos){
 let flechas =[];
 
     for (let i=0;i<elementos;i++){
-        flechas[i]=flecha(0,0,0,0,0,0)
+        flechas[i]=flecha(0,0,0,0,0,0,0x7149C6)
 
     }
 return flechas
