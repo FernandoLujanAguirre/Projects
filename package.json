@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy" : "gh-pages -d ./"
+  },
   "dependencies": {
     "array-union": "^1.0.2",
     "array-uniq": "^1.0.3",
@@ -48,10 +52,7 @@
     "universalify": "^0.1.2",
     "wrappy": "^1.0.2"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy" : "gh-pages -d ./"
-  },
+
   "author": "",
   "license": "ISC"
 }
