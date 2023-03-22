@@ -12,7 +12,7 @@ function createLights() {
   //////
 const spotLight = new SpotLight( 0xffffff );
 
-spotLight.position.set( 2, 2, 2 );
+spotLight.position.set( 2000, 2000, 2000 );
 //spotLight.map = new TextureLoader().load( url );
 spotLight.intensity=10;
 spotLight.castShadow = true;

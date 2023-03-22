@@ -68,8 +68,8 @@ class Loop {
               }
 
               this.scene.add(createTrail(v_old,v_new))
-
-              if (this.scene.children.length>3500){this.scene.children.splice(2,1)
+              //console.log(this.scene.children.splice(2,1))
+              if (this.scene.children.length>1000){this.scene.children.splice(4,1)
                 
               }
               
