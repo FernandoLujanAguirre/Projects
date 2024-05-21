@@ -1,4 +1,4 @@
-import {Clock,AxesHelper} from "../../../three.js-master/build/three.module.js";
+import {Clock,AxesHelper} from "../../three.js-master/build/three.module.js";
 
 import { createCamera } from './camera.js';
 import { createScene } from './scene.js';
