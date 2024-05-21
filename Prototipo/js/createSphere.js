@@ -1,4 +1,4 @@
-import { DoubleSide,MeshBasicMaterial,SphereGeometry,MeshPhongMaterial,Mesh,TextureLoader,MeshStandardMaterial } from "../../../../../three.js-master/build/three.module.js";
+import { DoubleSide,MeshBasicMaterial,SphereGeometry,MeshPhongMaterial,Mesh,TextureLoader,MeshStandardMaterial } from "../../three.js-master/build/three.module.js";
 
 function createSphere(radius,x,y,z){
 
