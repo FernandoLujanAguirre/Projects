@@ -5,7 +5,7 @@ import { createScene } from './scene.js';
 import { createLights } from './lights.js';
 import { Resizer } from './Resizer.js';
 import { createRenderer } from './renderer.js';
-import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "../../three.js-master/examples/jsm/controls/OrbitControls.js";
 import { createSphere } from "./createSphere.js";
 import { CreateTrail } from "./CreateTrail.js";
 import {buscarDatos} from "./buscar_datos.js"
