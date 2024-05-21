@@ -1,4 +1,4 @@
-import { LineBasicMaterial, BufferGeometry, Line, Vector3 ,BufferAttribute} from "../../../../../three.js-master/build/three.module.js";
+import { LineBasicMaterial, BufferGeometry, Line, Vector3 ,BufferAttribute} from "../../three.js-master/build/three.module.js";
 
 
 function CreateTrail(Ox,Oy,Oz,x,y,z){
