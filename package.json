@@ -1,7 +1,6 @@
 {
   "name": "three_projects",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,7 +23,7 @@
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",
     "fs.realpath": "^1.0.0",
-    "gh-pages": "^4.0.0",
+    "gh-pages": "^6.1.1",
     "glob": "^7.2.3",
     "globby": "^6.1.0",
     "graceful-fs": "^4.2.10",
@@ -53,5 +52,14 @@
     "wrappy": "^1.0.2"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FernandoLujanAguirre/Projects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FernandoLujanAguirre/Projects/issues"
+  },
+  "homepage": "https://github.com/FernandoLujanAguirre/Projects#readme",
+  "description": ""
 }
