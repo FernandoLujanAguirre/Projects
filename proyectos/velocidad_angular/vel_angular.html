@@ -17,33 +17,33 @@
 </head>
 
 <body>
-  <h1>Momento angular visual.</h1>
 
-  <div id="scene-container">
-    <!-- Our <canvas> will be inserted here -->    
-  </div>
-  <div class="ecuacion"><p>
 
+<div id="contenedor">
+<h1>Momento angular visual.</h1>
+<div class="ecuacion">
+  <p>
     Los vectores \( r_a \) se miden desde el centro de masas.
     La velocidad lineal es igual a:
-\[ \mathbb{v}_a=\Omega \times r_a \]
+    \[ \mathbb{v}_a=\Omega \times r_a \]
 
     El momento angular es igual a:
     \[M=\sum_am_ar_a\times \mathbb{v}_a \]
     donde \(m_a\) es la masa de cada esfera.
 
     Para satisfacer al cambio en el momento angular, \( \Omega \) ya no puede apuntar únicamente hacia \(z\).
-  </p></div>
-  <div class="slidecontainer">
-    Ángulo \(\theta\): \( [0^\circ,90^\circ] \)
-    <input type="range" min="0" max="90" value="45" class="slider" id="myRange">
-    
-      
-
-  </div>
+  </p>
+    <div class="slidecontainer">
+      Ángulo \(\theta\): \( [0^\circ,90^\circ] \)
+      <input type="range" min="0" max="90" value="45" class="slider" id="myRange">
+    </div>
+</div>
+<div id="scene-container">
+  <!-- Our <canvas> will be inserted here -->    
+</div>
+</div>
   
 </body>
 
-</body>
 
 </html>

@@ -41,7 +41,7 @@ class World {
     const [cil1,cil2,cil3] = cilindros();
     const elementos = 11;
     const flechas = crearFlechas(elementos);
-
+    console.log(container.clientHeight)
     scene.add(axes,s1,s2,s3,s4)
 
     loop = new Loop(camera, scene, renderer,controls,stats,cssRenderer,cameracss,scenecss);
