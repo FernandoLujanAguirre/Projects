@@ -11,7 +11,7 @@ function createCamera() {
 
   // move the camera back so we can view the scene
   const iso = 3.5;
-  camera.position.set(2,2,4);
+  camera.position.set(5,5,10);
   camera.up.set(0,0,1);
   return camera;
 }
