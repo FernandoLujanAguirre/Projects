@@ -46,8 +46,10 @@
     "pkg-dir": "^4.2.0",
     "semver": "^6.3.0",
     "strip-outer": "^1.0.1",
+    "three": "^0.164.1",
     "trim-repeated": "^1.0.0",
     "universalify": "^0.1.2",
+    "webxr-polyfill": "^2.0.3",
     "wrappy": "^1.0.2"
   },
   "author": "",
@@ -60,5 +62,7 @@
     "url": "https://github.com/FernandoLujanAguirre/Projects/issues"
   },
   "homepage": "https://github.com/FernandoLujanAguirre/Projects#readme",
+  "main": "index.js",
+  "keywords": [],
   "description": ""
 }
