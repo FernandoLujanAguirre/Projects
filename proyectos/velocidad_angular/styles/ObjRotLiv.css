@@ -82,8 +82,8 @@ padding: 20px;
 }
 
 .slider::-moz-range-thumb {
-  width: 5px;
-  height: 5px;
+  width: 15px;
+  height: 15px;
   background: #04AA6D;
   cursor: pointer;
 }
