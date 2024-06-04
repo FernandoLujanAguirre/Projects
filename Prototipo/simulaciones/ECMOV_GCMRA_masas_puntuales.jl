@@ -3,6 +3,7 @@ using LinearAlgebra
 using Plots
 using LaTeXStrings
 using SciMLBase
+
 function rotor(du,u,p,t)
 
     M3 = 1

@@ -1,4 +1,3 @@
-using DifferentialEquations
 using LinearAlgebra
 using Plots
 using LaTeXStrings

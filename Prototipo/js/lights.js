@@ -5,7 +5,6 @@ import { Group,AmbientLight,DirectionalLight } from '../../three.js-master/build
 function createLights(intensity,x,y,z) {
   // Create a directional light
   const light = new DirectionalLight('white', intensity);
-  const ambientLight = new AmbientLight(0xffffff, 0.5); // White light with half intensity
   // move the light right, up, and towards us
   light.position.set(x, y, z);
   light.castShadow = true; // The light casts shadows
@@ -16,7 +15,7 @@ function createLights(intensity,x,y,z) {
 
   const luz = new Group();
 
-  luz.add(light,ambientLight)
+  luz.add(light)
   return luz;
 }
 
