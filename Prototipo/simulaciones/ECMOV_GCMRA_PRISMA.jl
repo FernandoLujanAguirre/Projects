@@ -100,14 +100,14 @@ function rotor(du,u,p,t)
     du3_0 = 0.0
 
     u4_0  = 0.0
-    du4_0 = 0.0
+    du4_0 = 0.01
 
-    u5_0  = pi/2
+    u5_0  = 1.0
     du5_0 = 0.0
     
     u0=[u1_0,u2_0,u3_0,u4_0,u5_0]
     du0=[du1_0,du2_0,du3_0,du4_0,du5_0]
-    tspan = (0.0,100)
+    tspan = (0.0,20)
 
     prob=SecondOrderODEProblem(rotor,du0,u0,tspan,dt=0.001,saveat=0.001)
     global sol = solve(prob)

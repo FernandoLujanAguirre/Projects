@@ -14,6 +14,8 @@ import { Group, Vector3 } from "../../three.js-master/build/three.module.js";
 import { Euler } from "../../three.js-master/build/three.module.js";
 import { CreatePlane } from "./CreatePlane.js";
 import { createCube } from "./CreateCube.js";
+import {importGLTF} from "./LoadGLTF.js"
+import {GLTFLoader} from "../../three.js-master/examples/jsm/loaders/GLTFLoader.js"
 
 const container = document.querySelector('#scene-container');
 
@@ -78,10 +80,68 @@ satelite.add(axesHelper)
 const Cube = createCube(7,4,1,1)
 
 satelite.add(Cube)
+//GLTF
+
+//importGLTF('Sat.gltf',scene)
+
+let rotor
+let Marco1
+
+  loadModel('Modelos_GLTF/prisma.gltf')
+  .then(loadedModel => {
+      rotor = loadedModel;
+      scene.add(rotor);
+      //animate(); // Iniciar la animación después de cargar el modelo
+  })
+  .catch(error => {
+      console.error('Error loading model:', error);
+  });
+
+
+  // Función para cargar el modelo GLTF/GLB
+  function loadModel(url = 'prisma.gltf') {
+    return new Promise((resolve, reject) => {
+        const loader = new GLTFLoader();
+        loader.load(url, function (gltf) {
+            const loadedModel = gltf.scene;
+            resolve(loadedModel); // La promesa se resuelve con el modelo cargado
+        }, undefined, function (error) {
+            reject(error); // La promesa se rechaza con el error
+        });
+    });
+}
+// Marco 1
+loadMarco('Modelos_GLTF/Marco1.gltf')
+.then(loadedModel => {
+    Marco1 = loadedModel;
+    scene.add(Marco1);
+    
+    //animate(); // Iniciar la animación después de cargar el modelo
+})
+.catch(error => {
+    console.error('Error loading model:', error);
+});
+
+
+// Función para cargar el modelo GLTF/GLB
+function loadMarco(url = 'Modelos_GLTF/Marco1.gltf') {
+  return new Promise((resolve, reject) => {
+      const loader = new GLTFLoader();
+      loader.load(url, function (gltf) {
+          const loadedModel = gltf.scene;
+          resolve(loadedModel); // La promesa se resuelve con el modelo cargado
+      }, undefined, function (error) {
+          reject(error); // La promesa se rechaza con el error
+      });
+  });
+}
 
 
 //Agregar a la escena
-scene.add(Luces,habitacion,satelite);
+
+
+
+scene.add(Luces,habitacion);
 //--------------------
 
 
@@ -115,9 +175,13 @@ const clock = new Clock();
       satelite.setRotationFromEuler(Sec1);
 
       
-      const Sec2 = new Euler(t5,t4,0,'ZYX');
+      const Sec2 = new Euler(t5,t4,0,'ZXY');
     Cube.setRotationFromEuler(Sec2);
    
-
+    
+    if (rotor){
+      rotor.add(Marco1)
+      rotor.setRotationFromEuler(Sec2);
+    }
 
   });
