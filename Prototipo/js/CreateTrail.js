@@ -3,7 +3,7 @@ import { LineBasicMaterial, BufferGeometry, Line, Vector3 ,BufferAttribute} from
 
 function CreateTrail(Ox,Oy,Oz,x,y,z){
     const material = new LineBasicMaterial({
-        color: 0x0000ff
+        color: 0x000000
     });
     
     const vertices = [];

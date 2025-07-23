@@ -6,14 +6,18 @@ using SciMLBase
 using SimulationLogs
 using JSON
 using DataFrames
+
+
+qd = pi/3
+
 function rotor(du,u,p,t)
+    qd = p
 
+    Ix = 0.00125
+    Iy = 0.0025
+    Iz = 0.00125
 
-    Ix = 1
-    Iy = 2
-    Iz = 3
-
-    Is = 1
+    Is = 0.0096
 
     
     
@@ -86,10 +90,21 @@ function rotor(du,u,p,t)
     M=[m11 m12 m13 m14 m15;m21 m22 m23 m24 m25;m31 m32 m33 m34 m35;m41 m42 m43 m44 m45;m51 m52 m53 m54 m55]
     C=[c11 c12 c13 c14 c15;c21 c22 c23 c24 c25;c31 c32 c33 c34 c35;c41 c42 c43 c44 c45;c51 c52 c53 c54 c55]
 
-    ddu = inv(M)*(-C*du)
+    Kp = 10
+    Kv = 10
+
+    qt = qd-u[5]
+
+    u=Kp*qt-Kv*du[5]
+
+    tau = [0;0;0;0;u]
+    ddu = inv(M)*(-C*du + tau)
+
+  
 
     end
 
+  
     u1_0  = 0.0
     du1_0 = 0.0
     
@@ -99,18 +114,40 @@ function rotor(du,u,p,t)
     u3_0  = 0.0
     du3_0 = 0.0
 
-    u4_0  = 0.0
-    du4_0 = 0.01
+    u4_0  = 0.0 #Gimbal interno
+    du4_0 = 10.0
 
-    u5_0  = 1.0
+    u5_0  = pi/3 # Rotor
     du5_0 = 0.0
     
     u0=[u1_0,u2_0,u3_0,u4_0,u5_0]
     du0=[du1_0,du2_0,du3_0,du4_0,du5_0]
-    tspan = (0.0,20)
 
-    prob=SecondOrderODEProblem(rotor,du0,u0,tspan,dt=0.001,saveat=0.001)
-    global sol = solve(prob)
+    tspan = (0.0,60.0)
+  
+    p = qd
+
+    prob=SecondOrderODEProblem(rotor,du0,u0,tspan,dt=0.001,saveat=0.001,p)
+    
+      # Events
+function condition(t,integrator)
+     t in collect(20:0.001:30)
+        affect!(integrator)
+        qd = integrator.p
+         #integrator.p = qd
+        println("t = $t, \t a = $qd")
+    
+    
+end
+
+function affect!(integrator)
+    integrator.p = 0.0
+end
+
+cb = DiscreteCallback(condition, affect!)
+
+    
+global sol = solve(prob,Tsit5())
 
     df=DataFrame(sol)
     json_str = JSON.json(df)

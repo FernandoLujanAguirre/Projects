@@ -1,33 +1,107 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!--MAthJax-->
-  <title>Animación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./js/03GCMRA_Prisma.js"></script> <!--Codigo java-->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!--MAthJax-->
+    <meta charset="UTF-8" /> <!--Codificacion para la interpretación del texto-->
+    <link rel="icon" href="../cicese.ico" type="image/x-icon">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--Aplicación se adapte al tamaño de la pantalla-->
-  <meta charset="UTF-8" /> <!--Codificacion para la interpretación del texto-->
+    
+    <title>Animación</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        #slider-container {
+            position: absolute;
+            width: 50%;
+            height: 5%;
+            bottom:0px;
+            text-align: center; 
+            background-color: rgb(228, 223, 223);
+        }
 
-  <link rel="icon" href="../cicese.ico" type="image/x-icon">
+        #scene-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color:0xe4dfdf;
+            
+        }
+        input[type="range"] {
+            width: 50%; 
+        }
 
-  <link href="./Estilo.css" rel="stylesheet" type="text/css"> <!--estilo del css-->
+        input[type="range"]::-moz-range-track {
+            height: 6px; /* Altura de la barra */
+            background: rgb(228, 223, 223); /* Color de la barra */
+            border-radius: 10px; /* Bordes redondeados */
+        }
 
-  <script type="module" src="./js/03GCMRA_Prisma.js"></script> <!--Codigo java-->
+        #progress-bar {
+            position:absolute;
+            width: 100%;
+            height: 50%;
+            background-color: rgb(255, 0, 0);
+            bottom: 0%;
+            opacity: 0.4;
+        }
+        #progress-bar-text {
+            position:absolute;
+            width: 100%;
+            height: 50%;
+            background-color: rgb(228, 223, 223);
+            bottom: 0%;
+        }
+        #menu-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    width: auto; /* Ajusta el ancho automáticamente al contenido */
+    min-width: 200px; /* Ancho mínimo opcional */
+}
+
+#data-selector {
+    font-size: 16px;
+    padding: 10px; /* Espaciado interno */
+    width: auto; /* Ajusta el ancho automáticamente al contenido */
+    max-width: 100%; /* Evita que el selector sea más ancho que el contenedor */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho total */
+}
+        
+    </style>
 </head>
 
+
 <body>
-  <h1>Rotor compuesto</h1>
 
-  <div id="scene-container">
-    <!-- Aquí se inserta la animación -->    
-  </div>
-<!--  <div class="ecuacion"><p>
-Puedes poner algo de texto aquí
-$$x^3=1$$
-  </p></div> -->
+    <!-- Div azul que contiene al div rojo -->
+    <div id="menu-container">
+        <label for="data-selector">Select data type:</label>
+        <select id="data-selector">
+          <option value="./simulaciones/datos_GCMRA_PRIMSA_Linealizacion_Colocada.json">Colocated linearization</option>
+          <option value="./simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada.json">Non colocated linearization</option>
+          <option value="./simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada_Simetria.json">Non colocated linearization with symmetric rotor</option>
+        </select>
+      </div>
+    <div id="scene-container"></div>
+    <div id="slider-container">
+        <div id="progress-bar-text">Hola</div>
+        <div id="progress-bar"></div>
+             <input type="range" id="mySlider" min="1" max="101" step = "5" value="1">
+            <label for="mySlider">time: <span id="sliderValue">x1</span></label> 
+    </div>
+
 
 </body>
-
-</body>
-
 </html>
+
+
