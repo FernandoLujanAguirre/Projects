@@ -1,4 +1,5 @@
-import Stats  from "../../../../../three.js-master/examples/jsm/libs/stats.module.js"
+import Stats from "https://esm.sh/three@0.161.0/examples/jsm/libs/stats.module.js";
+
 
 function FrameBar(){
 const stats = Stats();

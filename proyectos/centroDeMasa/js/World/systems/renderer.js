@@ -1,7 +1,7 @@
-import { WebGLRenderer } from "../../../../../three.js-master/build/three.module.js";
+import * as THREE from 'https://esm.sh/three@0.161.0';
 
 function createRenderer() {
-  const renderer = new WebGLRenderer({ antialias: true,preserveDrawingBuffer:false });
+  const renderer = new THREE.WebGLRenderer({ antialias: true,preserveDrawingBuffer:false });
   renderer.physicallyCorrectLights = true;
   renderer.autoClearColor = true;
   return renderer;

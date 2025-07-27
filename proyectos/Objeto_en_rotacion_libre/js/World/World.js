@@ -1,16 +1,16 @@
-import { createCamera } from './components/camera.js';
-import { createCube } from './components/cube.js';
-import { createScene } from './components/scene.js';
-import { createControls } from './systems/controls.js';
-import { createRenderer } from './systems/renderer.js';
-import { createPostprocessing } from "./systems/postprocessing.js";
-import { Resizer } from './systems/Resizer.js';
+import { createCamera } from '../../../Prototipo/js/camera.js';
+import { createCube } from '../../../Prototipo/js/cube.js';
+import { createScene } from '../../../Prototipo/js/scene.js';
+import { createControls } from '../../../Prototipo/js/controls.js';
+import { createRenderer } from '../../../Prototipo/js/renderer.js';
+import { createPostprocessing } from "../../../Prototipo/js/postprocessing.js";
+import { Resizer } from '../../../Prototipo/js/Resizer.js';
 import { Loop } from './systems/Loop.js';
-import {createAxes } from "./components/axes.js"
-import {createLights } from "./components/lights.js"
+import {createAxes } from "../../../Prototipo/js/axes.js"
+import {createLights } from "../../../Prototipo/js/lights.js"
 import { createPoints } from "./components/points.js";
-import {loadObject} from "./components/objects.js"
-import {agrupar} from "./systems/agrupar.js"
+import {loadObject} from "../components/objects.js"
+import {agrupar} from "./systems/agrupar.js";
 import { createTrail } from "./components/line.js";
 import { FrameBar } from './systems/FramesBar.js';
 // These variables are module-scoped: we cannot access them

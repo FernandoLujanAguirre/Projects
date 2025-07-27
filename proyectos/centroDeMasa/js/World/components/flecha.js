@@ -1,15 +1,15 @@
-import {Vector3, ArrowHelper} from "../../../../../three.js-master/build/three.module.js"
+import * as THREE from 'https://esm.sh/three@0.161.0';
 
 
 function flecha(Vx,Vy,Vz,Ox,Oy,Oz,Color){
 
-const Vector = new Vector3(Vx,Vy,Vz);    
-const Origen = new Vector3(Ox,Oy,Oz);    
+const Vector = new THREE.Vector3(Vx,Vy,Vz);    
+const Origen = new THREE.Vector3(Ox,Oy,Oz);    
 
 const lengthVec = Math.sqrt(Vector.x**2+Vector.y**2+Vector.z**2);
-const VectorUnit = new Vector3 (Vector.x/lengthVec,Vector.y/lengthVec,Vector.z/lengthVec);
+const VectorUnit = new THREE.Vector3 (Vector.x/lengthVec,Vector.y/lengthVec,Vector.z/lengthVec);
 
-const Flecha = new ArrowHelper( VectorUnit, Origen, lengthVec, Color );
+const Flecha = new THREE.ArrowHelper( VectorUnit, Origen, lengthVec, Color );
 Flecha.Vector=Vector;
 
 return Flecha

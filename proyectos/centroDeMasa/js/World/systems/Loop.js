@@ -1,7 +1,7 @@
-import { Clock, LineBasicMaterial, BufferGeometry,Line, Vector3, Points, Euler } from "../../../../../three.js-master/build/three.module.js";
+import * as THREE from 'https://esm.sh/three@0.161.0';
 import { CMcoo } from "../components/CMcoo.js";
 import { lengthDir } from "../components/length.js";
-const clock = new Clock();
+const clock = new THREE.Clock();
 
 let time = 0;
 let alert = 0;
@@ -36,36 +36,36 @@ class Loop {
             const c1y = Math.cos(theta*Math.PI/180)*l1;
             const c1z = Math.sin(theta*Math.PI/180)*l1;
             // Actualiza a la posicion de la masa
-            this.updatables[0].position.copy(new Vector3(c1x, c1y, c1z));
+            this.updatables[0].position.copy(new THREE.Vector3(c1x, c1y, c1z));
             // Recalculo del centro de masa
             const [cmx, cmy, cmz] = CMcoo(c1x,c1y,c1z);
             const [norm, dir] = lengthDir(cmx, cmy, cmz);
 
             // Vector de posición de las esferas, con respecto al C.M  
-            const R1 = new Vector3 (c1x-cmx, c1y-cmy, c1z-cmz);
-            const R2 = new Vector3 (0-cmx, -1-cmy, 0-cmz);
-            const R3 = new Vector3 (1-cmx, 0-cmy, 0-cmz);
-            const R4 = new Vector3 (-1-cmx, 0-cmy, 0-cmz);
+            const R1 = new THREE.Vector3 (c1x-cmx, c1y-cmy, c1z-cmz);
+            const R2 = new THREE.Vector3 (0-cmx, -1-cmy, 0-cmz);
+            const R3 = new THREE.Vector3 (1-cmx, 0-cmy, 0-cmz);
+            const R4 = new THREE.Vector3 (-1-cmx, 0-cmy, 0-cmz);
             //Actualiza a R1
             const [normR1, dirR1] = lengthDir(R1.x,R1.y,R1.z);
             this.updatables[11].setDirection(dirR1);
             this.updatables[11].setLength(normR1);
-            this.updatables[11].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[11].position.copy(new THREE.Vector3(cmx, cmy, cmz));
             //Actualiza a R2
             const [normR2, dirR2] = lengthDir(R2.x,R2.y,R2.z);
             this.updatables[12].setDirection(dirR2);
             this.updatables[12].setLength(normR2);
-            this.updatables[12].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[12].position.copy(new THREE.Vector3(cmx, cmy, cmz));
             //Actualiza a R3
             const [normR3, dirR3] = lengthDir(R3.x,R3.y,R3.z);
             this.updatables[13].setDirection(dirR3);
             this.updatables[13].setLength(normR3);
-            this.updatables[13].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[13].position.copy(new THREE.Vector3(cmx, cmy, cmz));
             //Actualiza a R4
             const [normR4, dirR4] = lengthDir(R4.x,R4.y,R4.z);
             this.updatables[14].setDirection(dirR4);
             this.updatables[14].setLength(normR4);
-            this.updatables[14].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[14].position.copy(new THREE.Vector3(cmx, cmy, cmz));
             //R1 11
 
             //FUERZA 2 6
@@ -87,29 +87,29 @@ class Loop {
             this.updatables[1].setDirection(dir);
             this.updatables[1].setLength(norm);
 
-            this.updatables[2].position.copy(new Vector3(c1x, c1y, c1z));
+            this.updatables[2].position.copy(new THREE.Vector3(c1x, c1y, c1z));
 
             this.updatables[3].setDirection(dirM1);
             this.updatables[3].setLength(normM1);
-            this.updatables[3].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[3].position.copy(new THREE.Vector3(cmx, cmy, cmz));
 
             this.updatables[4].setDirection(dirM2);
             this.updatables[4].setLength(normM2);
-            this.updatables[4].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[4].position.copy(new THREE.Vector3(cmx, cmy, cmz));
 
             this.updatables[9].setDirection(dirM3);
             this.updatables[9].setLength(normM3);
-            this.updatables[9].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[9].position.copy(new THREE.Vector3(cmx, cmy, cmz));
 
             this.updatables[10].setDirection(dirM4);
             this.updatables[10].setLength(normM4);
-            this.updatables[10].position.copy(new Vector3(cmx, cmy, cmz));
-            
+            this.updatables[10].position.copy(new THREE.Vector3(cmx, cmy, cmz));
+
             this.updatables[5].setDirection(dirRes);
             this.updatables[5].setLength(normRes);
-            this.updatables[5].position.copy(new Vector3(cmx, cmy, cmz));
+            this.updatables[5].position.copy(new THREE.Vector3(cmx, cmy, cmz));
 
-            this.updatables[15].position.copy(new Vector3(0,0.5*Math.cos(theta*Math.PI/180),0.5*Math.sin(theta*Math.PI/180)));
+            this.updatables[15].position.copy(new THREE.Vector3(0,0.5*Math.cos(theta*Math.PI/180),0.5*Math.sin(theta*Math.PI/180)));
             this.updatables[15].rotation.x=(theta*Math.PI/180)
             //console.log(normRes)
 

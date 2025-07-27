@@ -1,9 +1,9 @@
-import { Color, Scene } from "../../../../../three.js-master/build/three.module.js";
+import * as THREE from 'https://esm.sh/three@0.161.0';
 
 function createScene() {
-  const scene = new Scene();
+  const scene = new THREE.Scene();
 
-  scene.background = new Color(0x243763);
+  scene.background = new THREE.Color(0x243763);
 
   return scene;
 }

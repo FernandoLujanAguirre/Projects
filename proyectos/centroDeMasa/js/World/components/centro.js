@@ -1,4 +1,4 @@
-import {Vector3, ArrowHelper} from "../../../../../three.js-master/build/three.module.js"
+import * as THREE from 'https://esm.sh/three@0.161.0';
 import {flecha} from "./flecha.js"
 
 function VectorcentroMasa(c1,c2,c3,c4){
@@ -19,10 +19,10 @@ const Fuerza3 = flecha(0,magF,0,c3.x,c3.y,c3.z,color);
 const Fuerza4 = flecha(0,-magF,0,c4.x,c4.y,c4.z,color);
 
 // estas distancias son respecto al CM
-const R1 = new Vector3 (c1.x-CMx, c1.y-CMy, c1.z-CMz);
-const R2 = new Vector3 (c2.x-CMx, c2.y-CMy, c2.z-CMz);
-const R3 = new Vector3 (c3.x-CMx, c3.y-CMy, c3.z-CMz);
-const R4 = new Vector3 (c4.x-CMx, c4.y-CMy, c4.z-CMz);
+const R1 = new THREE.Vector3 (c1.x-CMx, c1.y-CMy, c1.z-CMz);
+const R2 = new THREE.Vector3 (c2.x-CMx, c2.y-CMy, c2.z-CMz);
+const R3 = new THREE.Vector3 (c3.x-CMx, c3.y-CMy, c3.z-CMz);
+const R4 = new THREE.Vector3 (c4.x-CMx, c4.y-CMy, c4.z-CMz);
 
 const FR1 = flecha(R1.x,R1.y,R1.z,CMx,CMy,CMz,0xFB8B24);
 const FR2 = flecha(R2.x,R2.y,R2.z,CMx,CMy,CMz,0xD90368);
@@ -41,7 +41,7 @@ const M3 = flecha(vecM3.x,vecM3.y,vecM3.z,CMx,CMy,CMz,0x084887);
 const vecM4 = R4.cross(Fuerza4.Vector);
 const M4 = flecha(vecM4.x,vecM4.y,vecM4.z,CMx,CMy,CMz,0x04A777);
 
-const vecRes = new Vector3(vecM1.x + vecM2.x + vecM3.x + vecM4.x,vecM1.y + vecM2.y + + vecM3.y + vecM4.y,vecM1.z + vecM2.z + vecM3.z + vecM4.z);
+const vecRes = new THREE.Vector3(vecM1.x + vecM2.x + vecM3.x + vecM4.x,vecM1.y + vecM2.y + + vecM3.y + vecM4.y,vecM1.z + vecM2.z + vecM3.z + vecM4.z);
 const Resultante = flecha(vecRes.x,vecRes.y,vecRes.z,CMx,CMy,CMz,0xF7F5FB);
 
 

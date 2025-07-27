@@ -1,12 +1,12 @@
-import { PerspectiveCamera, Scene } from "../../../../../three.js-master/build/three.module.js";
-import {CSS3DObject, CSS3DRenderer} from "../../../../../three.js-master/examples/jsm/renderers/CSS3DRenderer.js"
+import * as THREE from 'https://esm.sh/three@0.161.0';
+import { CSS3DRenderer, CSS3DObject } from "https://esm.sh/three@0.161.0/examples/jsm/renderers/CSS3DRenderer.js";
 
 
 
 function css3d(container){
-const scenecss = new Scene();
+const scenecss = new THREE.Scene();
 const aspect = window.innerWidth/innerHeight;
-const cameracss = new PerspectiveCamera(    35, // fov = Field Of View
+const cameracss = new THREE.PerspectiveCamera(    35, // fov = Field Of View
 aspect, // aspect ratio (dummy value)
 0.1, // near clipping plane
 200, // far clipping plane

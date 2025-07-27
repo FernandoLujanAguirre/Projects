@@ -1,30 +1,17 @@
-import {
-    BoxBufferGeometry,
-    EdgesGeometry,
-    LineSegments,
-    LineBasicMaterial,
-    Color,
-    Mesh,
-    MeshBasicMaterial,
-    PerspectiveCamera,
-    Scene,
-    WebGLRenderer,
-    Clock,
-    AxesHelper,
-    MathUtils
-  } from "../../../three.js-master/build/three.module.js";
+import * as THREE from 'https://esm.sh/three@0.161.0';
+
 
   //import { EffectComposer } from "../../../three.js-master/three/examples/jsm/postprocessing/EffectComposer.js";
   /*import { RenderPass } from "../../../three.js-master/three/examples/jsm/postprocessing/RenderPass.js";
   import { GlitchPass } from "../../../three.js-master/three/examples/jsm/postprocessing/GlitchPass.js";
   */
- import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
   import {buscarDatos} from "./buscar_datos.js"
 
   const container = document.querySelector('#scene-container');
-  const clock = new Clock();
+  const clock = new THREE.Clock();
 // create a Scene
-const scene = new Scene();
+const scene = new THREE.Scene();
 
 
 // Set the background color
@@ -36,24 +23,24 @@ const aspect = container.clientWidth / container.clientHeight;
 const near = 0.1; // the near clipping plane
 const far = 100; // the far clipping plane
 
-const camera = new PerspectiveCamera(fov, aspect, near, far);
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.up.set(0,0,1);
 camera.position.set(1,1,1);
 
 // create a geometry
-const geometry = new BoxBufferGeometry(.5, .1, .01);
-const edges = new EdgesGeometry( geometry );
-const line = new LineSegments( edges, new LineBasicMaterial( { color: 0x000000 } ) );
+const geometry = new THREE.BoxBufferGeometry(.5, .1, .01);
+const edges = new THREE.EdgesGeometry( geometry );
+const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000 } ) );
 // create a default (white) Basic material
-const material = new MeshBasicMaterial({color: 0x999999});
+const material = new THREE.MeshBasicMaterial({color: 0x999999});
 
 // create a Mesh containing the geometry and material
-const cube = new Mesh(geometry, material);
+const cube = new THREE.Mesh(geometry, material);
 
 // add the mesh to the scene
 
 // create the renderer
-const renderer = new WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 //const composer = new EffectComposer( renderer );
 //const renderer = new WebGLRenderer();
 // next, set the renderer to the same size as our container element
@@ -71,7 +58,7 @@ const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
 
 //Axis Helper
-const axesHelper = new AxesHelper( 0.3 );
+const axesHelper = new THREE.AxesHelper( 0.3 );
 
 
     let time=0

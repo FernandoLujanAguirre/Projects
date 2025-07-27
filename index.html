@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú de navegación</title>
+  <title>Fernando Lujan</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-image: url('./Ensenada.jpeg'); /* Ruta a tu imagen */
+    background-size: cover;       /* Escala la imagen para cubrir toda la pantalla */
+    background-position: center;  /* Centra la imagen */
+    background-repeat: no-repeat; /* No repite la imagen */
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 100px;
+      
     }
 
     h1 {
@@ -33,15 +37,28 @@
     .boton:hover {
       background-color: #005b99;
     }
+    #footer-text {
+    position: fixed;
+    bottom: 10px;
+    left: 15px;
+    font-size: 12px;
+    color: white; /* o negro, según el fondo */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
   </style>
 </head>
 <body>
 
-  <h1>Welcome</h1>
-
-  <a href="./Prototipo/GCMRA_prisma.html" class="boton">Ir a la Página 1</a>
-  <a href="./Prototipo/ECP_Model.html" class="boton">Ir a la Página 2</a>
-  <a href="pagina3.html" class="boton">Ir a la Página 3</a>
-
+  <h1>Welcome to Fernando's Luján Website</h1>
+  I  thiss page you will find some academic projects that I have been developed. Click on the buttons below to see 3D animations, videos and presentations. 
+  <a href="./Prototipo/GCMRA_prisma.html" class="boton">3D animation about satellite attitude control</a>
+  <a href="./Prototipo/ECP_Model.html" class="boton">3D animation about GCM position control</a>
+  <a href="proyectos/Presentacion El efecto Dzhanibekov/presentacion.html" class="boton">Presentation about the Dzhanibekov effect and possible applications (spanish)</a>
+  <a href="proyectos/centroDeMasa/centroDeMasa.html" class="boton">See how the angular momentum vector change when the center of mass is shifted</a>
+  <a href="https://www.youtube.com/watch?v=oFFmmhjkPME" class="boton">Orbital simulator (video)</a>
+    <a href="https://www.youtube.com/watch?v=VsGPeQrokRI&t=4s" class="boton">Attitude control with double gimbaled CMG (video)</a>
+    <div id="footer-text">Picture at Ensenada Harbour</div>
 </body>
 </html>
