@@ -1,13 +1,13 @@
-import { DoubleSide,MeshBasicMaterial,SphereGeometry,MeshPhongMaterial,Mesh,TextureLoader,MeshStandardMaterial, Material } from "../../three.js-master/build/three.module.js";
+import * as THREE from 'https://esm.sh/three@0.161.0';
 
 function createSphere(radius,x,y,z){
 
-    const textureLoader = new TextureLoader();
+    const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("./Texturas/prueba.png");
-const geometry = new SphereGeometry( radius, 32, 21 );
+const geometry = new THREE.SphereGeometry( radius, 32, 21 );
     
 
-const MetalMaterial = new MeshStandardMaterial({ 
+const MetalMaterial = new THREE.MeshStandardMaterial({ 
     color: 0XFF5733, 
     transparent: true, // Enable transparency
     opacity: 0.5,       // Set the opacity level (0.0 to 1.0)
@@ -17,9 +17,9 @@ const MetalMaterial = new MeshStandardMaterial({
     roughness: 0.5 // between 0 and 1
     
 });
-const material2 = new MeshBasicMaterial({ map: texture });
+const material2 = new THREE.MeshBasicMaterial({ map: texture });
 
-const sphere = new Mesh( geometry, MetalMaterial );
+const sphere = new THREE.Mesh( geometry, MetalMaterial );
 sphere.castShadow = true; // The cube casts a shadow
 sphere.position.set(x, y, z);
 

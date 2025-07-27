@@ -1,7 +1,6 @@
-import { PerspectiveCamera } from '../../three.js-master/build/three.module.js';
-
+import * as THREE from 'https://esm.sh/three@0.161.0';
 function createCamera(x,y,z) {
-  const camera = new PerspectiveCamera(
+  const camera = new THREE.PerspectiveCamera(
     35, // fov = Field Of View
     1, // aspect ratio (dummy value)
     0.1, // near clipping plane
