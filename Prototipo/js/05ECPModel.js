@@ -1,19 +1,18 @@
-import { Clock, AxesHelper } from "../../../three.js-master/build/three.module.js";
 import { createCamera } from './camera.js';
 import { createScene } from './scene.js';
 import { createLights } from './lights.js';
 import { createAmbientLights } from "./CreateAmbientLight.js";
 import { Resizer } from './Resizer.js';
-import { createRenderer } from './renderer.js';
-import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
+import { createRenderer } from './renderer.js'
 import { createSphere } from "./createSphere.js";
 import { CreateTrail } from "./CreateTrail.js";
 import { buscarDatos } from "./buscar_datos_ECP.js";
-import { Group, Vector3, Line, LineBasicMaterial, BufferGeometry } from "../../three.js-master/build/three.module.js";
-import { Euler } from "../../three.js-master/build/three.module.js";
 import { CreatePlane } from "./CreatePlane.js";
 import { createCube } from "./CreateCube.js";
-import { GLTFLoader } from "../../three.js-master/examples/jsm/loaders/GLTFLoader.js";
+
+import * as THREE from 'https://esm.sh/three@0.161.0';
+import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
 
 const container = document.querySelector('#scene-container');
 
@@ -41,19 +40,19 @@ const light5 = createLights(3, -1, -1, -1);
 
 const ambientLight = createAmbientLights();
 
-const Luces = new Group();
+const Luces = new THREE.Group();
 Luces.add(light1, light2, light3, light4, light5);
 //------------
 
 //Axis Helper
-const axesHelperMovil = new AxesHelper(2);
-const axesHelperLast = new AxesHelper(3);
+const axesHelperMovil = new THREE.AxesHelper(2);
+const axesHelperLast = new THREE.AxesHelper(3);
 
 const Lastt1 = buscarDatos("Last", "t1");
 const Lastt2 = -buscarDatos("Last", "t2");
 const Lastt3 = buscarDatos("Last", "t3");
 
-const SecAxes = new Euler(0, 0, 0, 'XYZ');
+const SecAxes = new THREE.Euler(0, 0, 0, 'XYZ');
 axesHelperLast.setRotationFromEuler(SecAxes);
 //-------------
 
@@ -67,7 +66,7 @@ const h = 5;
 const plane = CreatePlane(w, h);
 const paredR = plane.clone();
 const paredL = paredR.clone();
-const habitacion = new Group();
+const habitacion = new THREE.Group();
 
 plane.position.z = -w / 2;
 paredR.rotation.y = Math.PI / 2;
@@ -153,7 +152,7 @@ function loadModel(url) {
 let v_oldd_x = 0;
 let v_oldd_y = 0.05;
 let v_oldd_z = 0;
-let v_old = new Vector3(v_oldd_x, v_oldd_y, v_oldd_z);
+let v_old = new THREE.Vector3(v_oldd_x, v_oldd_y, v_oldd_z);
 //----------
 
 //Agregar a la escena
@@ -173,7 +172,7 @@ resizer.onResize = () => {
     renderer.render(scene, camera);
 };
 
-const clock = new Clock();
+const clock = new THREE.Clock();
 
 let time = 0;
 
@@ -191,10 +190,10 @@ renderer.setAnimationLoop(() => {
     const t4 = buscarDatos(time.toFixed(2), "t4");
     
 
-    const Sec1 = new Euler(0,0,t1, 'ZXY');
-    const Sec2 = new Euler(t2,0,t1, 'ZXY');
-    const Sec3 = new Euler(t2,t3,t1, 'ZXY');
-    const Sec4 = new Euler(t4,0,0, 'ZXY');
+    const Sec1 = new THREE.Euler(0,0,t1, 'ZXY');
+    const Sec2 = new THREE.Euler(t2,0,t1, 'ZXY');
+    const Sec3 = new THREE.Euler(t2,t3,t1, 'ZXY');
+    const Sec4 = new THREE.Euler(t4,0,0, 'ZXY');
 
 
     if (currentModels[0]) {
@@ -217,19 +216,19 @@ renderer.setAnimationLoop(() => {
         ;
     }
 
-    let v_new = new Vector3(v_oldd_x, v_oldd_y, v_oldd_z).applyEuler(Sec1);
+    let v_new = new THREE.Vector3(v_oldd_x, v_oldd_y, v_oldd_z).applyEuler(Sec1);
 
     function createTrail(v_old, v_new) {
-        const material = new LineBasicMaterial({
+        const material = new THREE.LineBasicMaterial({
             color: 0xffffff
         });
         let vertices = [];
         vertices.push(v_old);
         vertices.push(v_new);
 
-        const geometry = new BufferGeometry().setFromPoints(vertices);
+        const geometry = new THREE.BufferGeometry().setFromPoints(vertices);
 
-        const line = new Line(geometry, material);
+        const line = new THREE.Line(geometry, material);
 
         return (line);
     }
