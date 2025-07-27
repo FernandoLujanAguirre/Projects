@@ -94,7 +94,6 @@ const Cube = createCube(7, 4, 1, 1);
 //GLTF
 // Obtener el selector del menú
 const dataSelector = document.getElementById('data-selector');
-console.log(dataSelector.value);
 // Recuperar el valor seleccionado previamente (si existe) del almacenamiento local
 const savedValue = localStorage.getItem('selectedData');
 if (savedValue) {
@@ -103,22 +102,26 @@ if (savedValue) {
 
 // Cargar los modelos iniciales según el valor predeterminado o guardado
 const initialValue = dataSelector.value;
+let rotorPath, gimbalPath;
 loadModelsBasedOnSelection(initialValue);
-
+rotorPath = './Modelos_GLTF/prisma.gltf';
+gimbalPath = './Modelos_GLTF/Marco1.gltf';
 // Función para manejar el cambio de datos en el menú
 dataSelector.addEventListener('change', (event) => {
     const selectedValue = event.target.value;
+    console.log(selectedValue);
 
     // Guardar el valor seleccionado en el almacenamiento local
     localStorage.setItem('selectedData', selectedValue);
 
     // Recargar la página
     location.reload();
+
 });
 
 // Función para cargar modelos según la selección
 function loadModelsBasedOnSelection(selectedValue) {
-    let rotorPath, gimbalPath;
+    
     switch (selectedValue) {
         case './simulaciones/datos_GCMRA_PRIMSA_Linealizacion_Colocada.json':
             rotorPath = './Modelos_GLTF/prisma.gltf';
@@ -138,7 +141,6 @@ function loadModelsBasedOnSelection(selectedValue) {
             return;
     }
 // Variables globales para almacenar los modelos actuales
-
     Promise.all([loadModel(rotorPath), loadModel(gimbalPath)])
         .then(([loadedRotor, loadedGimbal]) => {
             if (currentRotor) {
