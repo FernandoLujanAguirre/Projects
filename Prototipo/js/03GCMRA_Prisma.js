@@ -94,7 +94,7 @@ const Cube = createCube(7, 4, 1, 1);
 //GLTF
 // Obtener el selector del menú
 const dataSelector = document.getElementById('data-selector');
-
+console.log(dataSelector.value);
 // Recuperar el valor seleccionado previamente (si existe) del almacenamiento local
 const savedValue = localStorage.getItem('selectedData');
 if (savedValue) {
@@ -123,6 +123,7 @@ function loadModelsBasedOnSelection(selectedValue) {
         case './simulaciones/datos_GCMRA_PRIMSA_Linealizacion_Colocada.json':
             rotorPath = './Modelos_GLTF/prisma.gltf';
             gimbalPath = './Modelos_GLTF/Marco1.gltf';
+            console.log("uno");
             break;
         case './simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada.json':
             rotorPath = './Modelos_GLTF/prisma.gltf';
