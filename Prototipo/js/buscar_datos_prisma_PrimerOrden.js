@@ -1,7 +1,7 @@
 //Read the json file
 
 const dataSelector = document.getElementById('data-selector');
-console.log(dataSelector.value);
+console.log("buscador datos " +dataSelector.value);
 //const response = await fetch("./simulaciones/datos_GCMRA_MasasPuntuales.json");
 const response = await fetch(dataSelector.value);
 const datos = await response.json();

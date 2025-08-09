@@ -11,7 +11,7 @@ using ControlSystems
 
 #PARAMETROS
     #simulacion
-    t = 1000.0
+    t = 100.0
     tspan = (0.0,t)
     datos = []
 
@@ -22,19 +22,19 @@ using ControlSystems
     savetimes = 0.0:0.01:t;
 
 function rotor(du,u,p,t)
-    q1d, q2d = p
+    q1d, q2d, q1pd, q2pd = p
     #Satélite
     Ixs = 33.581e-3
     Iys = 33.147e-3
     Izs = 6.921e-3
     
     # Gimball #-6
-    Ixg = 9.933e-6
-    Iyg = 5.561e-6
-    Izg = 5.563e-6
+    Ixg = 4.157e-5
+    Iyg = 4.921e-5
+    Izg = 8.841e-5
     # Rotor   
-    Ix = 1.766e-5
-    Iy = 4.056e-6
+    Ix = 1.311e-5
+    Iy = 7.475e-6
 
 a1 = (-3*Ix)-3*Ixg-2*Ixs-5*Iy-2*Iyg-3*Izg-4*Izs
 a2 = Ix+Ixg-Iy-Izg
@@ -140,8 +140,8 @@ h3 = h[4:5,:];
 μ = [1E-3*du[4] #gimbal
      1E-6 *du[5]] #rotor
 
-M11i = inv(M11)
 
+M11i = inv(M11)
 h2bar = h2 - M21*M11i*h1;#
 M23bar = M23 - M21*M11i*M13;#
 M22bar = M22 - M21*M11i*M12;#
@@ -153,40 +153,41 @@ M33bar = M33 - M31*M11i*M13;#
 h1b = h1 - M12*M22bi*h2bar;
 M13t = M13 - M12*M22bi*M23bar
 
+#Control de posición
 qd = [q1d
       q2d]
-Kp = diagm([1,1])
-Kd = diagm([1,1])
-#Kp = diagm([1,1]) # detumbling
-#Kd = diagm([1,1])
+Kp = diagm([10,10])
+Kd = diagm([10,10])
+Kv = diagm([0.1,.1])
 e = qd - u[1:2]
 ep = -du[1:2]
+#Campo potencial
+∇V = [0;-2/((u[2] - pi/2)^3)  - 2/((u[2] + pi/2)^3)]
+#Control de velocdad
+#qdp = [q1pd
+#      q2pd]
+#Kp = diagm([2,1])
+#Kd = diagm([1,1])
+#e = qdp - du[1:2]
+#ep = -du[6:7]
+
+#Linealización
 v1 = Kp*e + Kd*ep
-#v1 = -[1.1*sin(-q1d + u[1])+3.0*du[1]
-#       1.0*sin(-q2d + u[2])+0.1*du[2]]
-
-#LQR
-#A = [0 0;0 0]
-#B = [1 0;
-#     0 1]
-#Q = diagm([10,10])   # penaliza estados
-#R = diagm([10,10]) # penaliza control
-#K, _, _ = lqr(A, B, Q, R)
-#v1 = -K*[u[1]-q1d;u[2]-q2d]
-
 v3 = -pinv(M13t)*(M11*v1 - h1b)
 #v3 = Kp*e + Kd*ep
 M33t = M33bar - M32bar*M22bi*M23bar
 h3t = h3bar - M32bar*M22bi*h2bar
-τ = soft_sat(vec(M33t*v3 + h3t),.001)
-
+#Saturacion del controlador
+τ = soft_sat(vec(M33t*v3 + h3t ),.001) #para control de posicion
+#τ = M33t*v3 + h3t #para control de velocidad
 #Sistema v2
 du[1:5] .= (u[6:10] )
 du[6:10] .= inv(M)*([0;0;0;τ]  -[0;0;0;μ] - C*du[1:5])      
 end
 
+# Velocdad incial maxima en los 3 ejes de 0.2 = 11.46grados/s
 u1_0  = 0.0
-du1_0 = 0.0 # 035
+du1_0 = 0.0
 
 u2_0  = 0.0
 du2_0 = 0.0
@@ -194,15 +195,19 @@ du2_0 = 0.0
 u3_0  = 0.0
 du3_0 = 0.0
 
-u4_0  = 0.0 #Gimbal interno
+u4_0  = 0.0#Gimbal interno
 du4_0 = 0.0
 
-u5_0  = 0.0 # Rotor
+u5_0  = 0.0# Rotor
 du5_0 = 0.0
 
-q1d = 89*(pi/180)
-q2d = 89*(pi/180)
-p = (q1d, q2d) 
+q1d = 45*(pi/180) #-pi - pi
+q2d = 45*(pi/180) #-pi/2 - pi/2
+
+q1pd = 0.0
+q2pd = 0.0
+
+p = (q1d, q2d, q1pd, q2pd) 
 
 u0=[u1_0,u2_0,u3_0,u4_0,u5_0]
 du0=[du1_0,du2_0,du3_0,du4_0,du5_0]
@@ -293,8 +298,7 @@ relayout!(subplots,
 
 
 savefig(subplots, "./Prototipo/simulaciones/Graficas/Linealizacion_No_colocada_Simetria.html");
-run(`notify-send "✅ Simulación Julia" "Tu simulación ha terminado."`)
+#run(`notify-send "✅ Simulación Julia" "Tu simulación ha terminado."`)
 
 #run(`xdg-open ./Prototipo/simulaciones/Graficas/Linealizacion_No_colocada_Simetria.html`)
-
 #savefig(pos, "./Prototipo/simulaciones/Graficas/Linealizacion_No_colocada_Simetria.svg")

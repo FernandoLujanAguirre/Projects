@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animación</title>
+
+  <!-- JavaScript principal (tu animación Three.js) -->
+  <script type="module" src="../js/Animations/ForPresentation.js"></script>
+
+  <!-- MathJax para fórmulas -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Ícono -->
+  <link rel="icon" href="../../cicese.ico" type="image/x-icon" />
+
+  <!-- Estilos -->
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    #main-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Columna izquierda */
+    #left-column {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      background: #fffefe;
+      border-right: 2px solid #ccc;
+    }
+
+    #menu-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: rgb(0, 0, 0);
+      padding: 10px;
+      height: 60px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+
+    #animation-container {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+    }
+
+    #animation-container canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      z-index: 0;
+    }
+
+    #slider-container {
+        width: 100%;
+        height: 60px;
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        z-index: 2;
+        margin-bottom: 10px;
+        margin-top:10px;
+    }
+
+    #progress-bar {
+      width: 90%;
+      height: 10px;
+      background-color: rgb(255, 255, 255);
+      opacity: 0.4;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    #progress-bar-text {
+      margin: 0;
+      font-weight: bold;
+      position: relative;
+      color: #000000;
+    }
+
+    input[type="range"] {
+      width: 80%;
+    }
+
+    /* Columna derecha */
+    #texto-container {
+      flex: 1;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #000000;
+      overflow-y: auto;
+      min-width: 0;
+      min-height: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main-container">
+    <!-- Columna izquierda -->
+    <div id="left-column">
+      <div id="menu-container">
+        <label for="data-selector">Select data type:</label>
+        <select id="data-selector" style="margin-left:10px;">
+          <option value="../simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada_Simetria.json" selected>
+            Non colocated with symmetric rotor
+          </option>
+        </select>
+      </div>
+      <div id="animation-container"></div>
+      <div id="slider-container">
+        <div id="progress-bar-text">Hola</div>
+        <div id="progress-bar"></div>
+        <input type="range" id="mySlider" min="1" max="101" step="5" value="1">
+        <label for="mySlider" style="color:#000000;">time: <span id="sliderValue">x1</span></label>
+      </div>
+    </div>
+    <!-- Columna derecha 
+    <div id="texto-container">
+      <h2>Attitude Control of a Satellite using a CMG as Only Actuator</h2>
+      <p>A 5 degree of freedom mechanical system is shown. Two degrees of freedom corresponding to the satellite (\(x\) and \(y\) coordinates) are controlled by two degrees of freedom CMG.</p>
+      <p>Geometric algebra and Euler-Lagrange approaches have been used to model the system. Within the framework  of robot equations </p>
+      <p>\(M \ddot{q} + C\dot{q} = \tau \), </p>
+      <p>Control techniques can be applied to the system, without relying on exogenous tools such as quaternions.</p>
+      <p>In this animation we see how the satellite orient to the reference position \(q^{ref}_x = 89^\circ \), \(q^{ref}_y = 89^\circ\) while the remaining coordinate \(q_z\) tend to a constant.</p>
+      <p>In the data selector choose non-collocated with symmetric rotor and refresh the page.</p>
+      <div style="text-align: center; padding: 10px;">
+        <button onclick="location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+          ⬅️ Back to index
+        </button>
+      </div>
+    </div>-->
+  </div>
+</body>
+</html>

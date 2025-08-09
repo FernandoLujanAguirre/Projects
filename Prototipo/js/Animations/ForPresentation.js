@@ -3,17 +3,17 @@
 //import { Euler } from "../../three.js-master/build/three.module.js";
 //import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
 // //import { GLTFLoader } from "../../three.js-master/examples/jsm/loaders/GLTFLoader.js";
-import { buscarDatos } from "./buscar_datos_prisma_PrimerOrden.js";
-import { createRenderer } from './renderer.js';
-import { createCamera } from './camera.js';
-import { createScene } from './scene.js';
-import { createLights } from './lights.js';
-import { createAmbientLights } from "./CreateAmbientLight.js";
-import { Resizer } from './Resizer.js';
-import { createSphere } from "./createSphere.js";
-import { CreateTrail } from "./CreateTrail.js";
-import { CreatePlane } from "./CreatePlane.js";
-import { createCube } from "./CreateCube.js";
+import { buscarDatos } from ".././buscar_datos_prisma_PrimerOrden.js";
+import { createRenderer } from '.././renderer.js';
+import { createCamera } from '.././camera.js';
+import { createScene } from '.././scene.js';
+import { createLights } from '.././lights.js';
+import { createAmbientLights } from ".././CreateAmbientLight.js";
+import { Resizer } from '.././Resizer.js';
+import { createSphere } from ".././createSphere.js";
+import { CreateTrail } from ".././CreateTrail.js";
+import { CreatePlane } from ".././CreatePlane.js";
+import { createCube } from ".././CreateCube.js";
 
 
 //import * as THREE from 'https://unpkg.com/three@0.161.0/build/three.module.js';
@@ -23,7 +23,10 @@ import { createCube } from "./CreateCube.js";
 import * as THREE from 'https://esm.sh/three@0.161.0';
 import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
-const container = document.querySelector('#scene-container');
+// ...existing code...
+
+// ...existing code...
+const container = document.querySelector('#animation-container');
 
 //-------
 
@@ -70,8 +73,8 @@ container.append(renderer.domElement);
 
 //Floor
 
-const w = 5;
-const h = 5;
+const w = 0.5;
+const h = 0.5;
 const plane = CreatePlane(w, h);
 const paredR = plane.clone();
 const paredL = paredR.clone();
@@ -106,8 +109,8 @@ if (savedValue) {
 const initialValue = dataSelector.value;
 let rotorPath, gimbalPath;
 loadModelsBasedOnSelection(initialValue);
-rotorPath = '../Modelos_GLTF/prisma.gltf';
-gimbalPath = '../Modelos_GLTF/Marco1.gltf';
+rotorPath = '../../Modelos_GLTF/prisma.gltf';
+gimbalPath = '../../Modelos_GLTF/Marco1.gltf';
 console.log("antes" + rotorPath)
 // Función para manejar el cambio de datos en el menú
 dataSelector.addEventListener('change', (event) => {
@@ -126,15 +129,6 @@ dataSelector.addEventListener('change', (event) => {
 function loadModelsBasedOnSelection(selectedValue) {
     
     switch (selectedValue) {
-        case '../simulaciones/datos_GCMRA_PRIMSA_Linealizacion_Colocada.json':
-            rotorPath = '../Modelos_GLTF/prisma.gltf';
-            gimbalPath = '.././Modelos_GLTF/Marco1.gltf';
-            console.log("cambio" + rotorPath);
-            break;
-        case '.././simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada.json':
-            rotorPath = '.././Modelos_GLTF/prisma.gltf';
-            gimbalPath = '.././Modelos_GLTF/Marco1.gltf';
-            break;
         case '../simulaciones/datos_GCMRA_PRIMSA_Linealizacion_No_Colocada_Simetria.json':
             rotorPath = '.././Modelos_GLTF/rotor.gltf';
             gimbalPath = '.././Modelos_GLTF/marco_sim.gltf';
@@ -193,7 +187,7 @@ let v_old = new THREE.Vector3(v_oldd_x, v_oldd_y, v_oldd_z);
 //----------
 
 //Agregar a la escena
-scene.add(Luces, habitacion, satelite, axesHelperMovil, axesHelperLast);
+scene.add(Luces, satelite, axesHelperMovil, axesHelperLast);
 
 //Slider
 let sliderValue = document.getElementById('mySlider').value;
