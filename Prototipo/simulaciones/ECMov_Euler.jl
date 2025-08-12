@@ -8,117 +8,84 @@ using JSON
 using DataFrames
 using PlotlyJS
 
-
-
+    t = 1500.0
+    tspan = (0.0,t)
+    savetimes = 0.0:0.01:t;
 function rotor(du,u,p,t)
 
-qd1, qd2, qd3 = p
+Ix = 4
+Iy = 5
+Iz = 3
 
-    #primsa
-    Ix = 1
-    Iy = 2
-    Iz = 3
+a1 = Ix+Iy-2*Iz
+a2 = Ix-Iy
+a3 = Iz
+    
 
-    m11 = Ix*cos(u[2])*cos(u[3]) 
-    m12 = -Ix*sin(u[3]) 
-    m13 = 0 
-    
-     m21 = Iy*cos(u[2])*sin(u[3]) 
-    m22 = Iy*cos(u[3]) 
-    m23 = 0 
-    
-     m31 = -Iz*sin(u[2]) 
-    
-     m32 = 0 
-    
-     m33 = Iz 
-     
-     c11 = -(1/2)*((2*Ix-2*Iy+2*Iz)*du[2]*sin(u[2])*cos(u[3])+((-Iy)+Iz)*du[1]*sin(2*u[2])*sin(u[3])) 
-    c12 = ((-Ix)-Iy+Iz)*du[3]*cos(u[3]) 
-    
-     c13 = ((-Ix)-Iy+Iz)*du[1]*cos(u[2])*sin(u[3]) 
-    c21 = -(1/2)*((Ix-Iz)*du[1]*sin(2*u[2])*cos(u[3])+((-2*Ix)+2*Iy+2*Iz)*du[2]*sin(u[2])*sin(u[3])) 
-    c22 = ((-Ix)-Iy+Iz)*du[3]*sin(u[3]) 
-    
-     c23 = (Ix+Iy-Iz)*du[1]*cos(u[2])*cos(u[3]) 
-    c31 = (1/4)*((-4*Iz*du[2]*cos(u[2]))+((-4*Ix)+4*Iy)*du[2]*cos(u[2])*cos(2*u[3])+(((-Ix)+Iy)*du[1]+((-Ix)+Iy)*du[1]*cos(2*u[2]))*sin(2*u[3])) 
-    c32 = -(1/2)*((-Ix)+Iy)*du[2]*sin(2*u[3]) 
-    
-     c33 = 0 
+m11 = (1/4)*(a1+4*a3+a1*cos(2*u[2])+(a2+a2*cos(2*u[2]))*cos(2*u[3])) 
+m12 = -(1/2)*(a2*cos(u[2])*sin(2*u[3])) 
+
+m13 = -a3*sin(u[2]) 
+
+m21 = -(1/2)*(a2*cos(u[2])*sin(2*u[3])) 
+m22 = -(1/2)*((-a1)-2*a3+a2*cos(2*u[3])) 
+
+m23 = 0 
+
+m31 = -a3*sin(u[2]) 
+
+m32 = 0 
+
+m33 = a3 
+
+
+c11 = -(1/2)*((a1+a2*cos(2*u[3]))*sin(2*u[2])*du[2]) 
+c12 = -(1/2)*((-a2*sin(u[2])*sin(2*u[3])*du[2])+(2*a3+2*a2*cos(2*u[3]))*cos(u[2])*du[3]) 
+c13 = -(1/2)*((a2+a2*cos(2*u[2]))*sin(2*u[3])*du[1]) 
+c21 = (1/4)*((a1+a2*cos(2*u[3]))*sin(2*u[2])*du[1]) 
+c22 = a2*sin(2*u[3])*du[3] 
+c23 = (a3-a2*cos(2*u[3]))*cos(u[2])*du[1] 
+
+ c31 = (1/4)*((a2+a2*cos(2*u[2]))*sin(2*u[3])*du[1]+((-4*a3)+4*a2*cos(2*u[3]))*cos(u[2])*du[2]) 
+c32 = -(1/2)*(a2*sin(2*u[3])*du[2]) 
+
+ c33 = 0 
 
     M=[m11 m12 m13;m21 m22 m23;m31 m32 m33]
     C=[c11 c12 c13;c21 c22 c23;c31 c32 c33]
 
-    K1 = 5
-    K0 = 1
+
+
+du[1:3] .= (u[4:6] )
+du[4:6] .= inv(M)*( - C*du[1:3] ) 
     
-    qt1 = qd1-u[1]
-    qtp1 = - du[1]
-
-    qt2 = qd2-u[2]
-    qtp2 = - du[2]
-
-    qt3 = qd3-u[3]
-    qtp3 = - du[3]
-
-
-    u1=K0*qt1 + K1*qtp1
-    u2=K0*qt2 + K1*qtp2
-    u3=K0*qt3 + K1*qtp3
-
-
-    #tau = [u1;u2;u3]
-    tau = [0;0;0]
-
-    ddu = inv(M)*(-C*du + tau )
 
 end
 
-  qd1 = 0.0
-  qd2 = 0.0
-  qd3 = 0.0
-
-  w20 = 1.0
-
-    u1_0  = 0.01
+    u1_0  = 0.0
     du1_0 = 0.0
     
     u2_0  = 0.0
-    du2_0 = cos(u1_0)*w20
+    du2_0 = 0.1
     
     u3_0  = 0.01
-    du3_0 = sin(u1_0)*w20
+    du3_0 = 0.0
 
     
     u0=[u1_0,u2_0,u3_0]
     du0=[du1_0,du2_0,du3_0]
 
-    tspan = (0.0,40.0)
 
-    p = [qd1,qd2,qd3]
+
+ prob=ODEProblem(rotor,vcat(u0,du0),tspan,dt=0.01,saveat=0.01)
+global sol = solve(prob,Tsit5(),maxiters=2_000_000,tstops=savetimes)
+
   
 
-    prob=SecondOrderODEProblem(rotor,du0,u0,tspan,dt=0.001,saveat=0.001,p)
-    
-      # Events
-function condition(t,integrator)
-     t in collect(20:0.001:30)
-        affect!(integrator)
-        qd = integrator.p
-         #integrator.p = qd
-        println("t = $t, \t a = $qd")
-    
-    
-end
-
-function affect!(integrator)
-    integrator.p = 0.0
-end
-
-cb = DiscreteCallback(condition, affect!)
+  
 
     
-global sol = solve(prob)
+sol = solve(prob)
 
     df=DataFrame(sol)
     json_str = JSON.json(df)
@@ -129,18 +96,14 @@ end
 
 traces = Vector{AbstractTrace}() 
 
-t1p = [u[1] for u in sol.u]
-t2p = [u[2] for u in sol.u]
-t3p = [u[3] for u in sol.u]
+t1p = [u[4] for u in sol.u]
+t2p = [u[5] for u in sol.u]
+t3p = [u[6] for u in sol.u]
 
-t1 = [u[4] for u in sol.u]
-t2 = [u[5] for u in sol.u]
-t3 = [u[6] for u in sol.u]
+t1 = [u[1] for u in sol.u]
+t2 = [u[2] for u in sol.u]
+t3 = [u[3] for u in sol.u]
 
-function angulo_continuo(theta)
-    vuelta_completa = 2*pi  # 2*pi es una vuelta completa en radianes
-    return theta .- floor.(theta ./ vuelta_completa) .* vuelta_completa
-end
 
 t1e = (t1)
 t2e = (t2)
@@ -171,6 +134,6 @@ vel = plot([traces6,traces7,traces8], Layout(title="Velocidades"))
 TD = plot([traces3d, trace_point], Layout(title="Diagrama de Fase 3D variando x0", scene=attr(aspectmode="cube")))
 
 
-display(TD)
+
 display(pos)
 display(vel)

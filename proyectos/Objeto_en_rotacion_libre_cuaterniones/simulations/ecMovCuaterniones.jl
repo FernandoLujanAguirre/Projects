@@ -83,6 +83,7 @@ u7_0=0.0;
 u0=[u1_0,u2_0,u3_0,u4_0,u5_0,u6_0,u7_0];
 
 tspan = (0.0,40.0)
+
 prob = ODEProblem(Conj,u0,tspan,dt=0.001,saveat=0.001)
 sol = solve(prob)
 

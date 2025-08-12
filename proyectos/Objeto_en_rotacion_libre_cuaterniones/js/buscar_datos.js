@@ -2,7 +2,7 @@
 
 
 
-const response = await fetch("./simulations/datos_rotor_cuaterniones.json");
+const response = await fetch("../.././proyectos/Objeto_en_rotacion_libre/datos/datos_rotor.json");
 const datos = await response.json();
 let donde = 0;
 function buscarDatos(tiempoActual,eje){
@@ -12,19 +12,19 @@ function buscarDatos(tiempoActual,eje){
     if (datos.timestamp[i] == tiempoActual){
       donde =  i;
       switch (eje){
-        case "omegax":
+        case "t1":
           return(datos.value1[i])
-        case "omegay":
+        case "v2":
           return(datos.value2[i])
-        case "omegaz":
+        case "t2":
           return(datos.value3[i])
-        case "a0":
+        case "v2":
           return(datos.value4[i]);
-        case "a1":
+        case "t3":
           return(datos.value5[i]);
-        case "a2":
+        case "v3":
           return(datos.value6[i]);
-        case "a3":
+        case "t4":
           return(datos.value7[i]);
         case "alert":
          return(0);

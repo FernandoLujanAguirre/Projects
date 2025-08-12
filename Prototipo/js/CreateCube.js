@@ -22,8 +22,8 @@ import * as THREE from 'https://esm.sh/three@0.161.0';
   const materials = [
   new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 0.5}), // cara 0: x
   new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 0.5}), // cara 1: -x
-  new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 0.5}), // cara 2: y
-  new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 0.5}), // cara 3: -y
+  new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 1.0}), // cara 2: y
+  new THREE.MeshStandardMaterial({ color: 0X0000ff,transparent:true,opacity: 1.0}), // cara 3: -y
   new THREE.MeshStandardMaterial({ color: 0Xff0000,transparent:true,opacity: 0.5}), // cara 4: z
   new THREE.MeshStandardMaterial({ color: 0X00ff00,transparent:true,opacity: 0.5})  // cara 5: -z
 ];
