@@ -11,7 +11,7 @@ using PlotlyJS
 
 #PARAMETROS
     #simulacion
-    t = 1500.0
+    t = 200.0
     tspan = (0.0,t)
     datos = []
 
@@ -24,14 +24,12 @@ using PlotlyJS
 function rotor(du,u,p,t)
     q1d, q2d = p
     #Satélite
-    #Ixs = 33.581e-3
-    #Iys = 33.147e-3
-    #Izs = 6.921e-3
+    Ixs = 33.581e-3
+    Iys = 33.147e-3
+    Izs = 6.921e-3
     
     
-    Ixs = 1100
-    Iys = 900
-    Izs = 800
+
     # Gimball #-6
     Ixg = 1.345e-6
     Iyg = 3.223e-6
@@ -166,26 +164,26 @@ e = qd - u[1:2]
 ep = -du[1:2]
 v3 = Kp*e + Kd*ep
  
-τ = soft_sat(vec(M33b*v3 + h3b),10000)
+τ = soft_sat(vec(M33b*v3 + h3b),0.1)
 #Sistema v2
 du[1:5] .= (u[6:10] )
-du[6:10] .= inv(M)*( - C*du[1:5] )      
+du[6:10] .= inv(M)*( [0;0;0;τ]- C*du[1:5] )      
 end
 
 u1_0  = 0.0
 du1_0 = 0.0 # 035
 
 u2_0  = 0.0 
-du2_0 = 3.0
+du2_0 = 0.0
 
-u3_0  = 1.0
+u3_0  = 0.0
 du3_0 = 0.0
 
 u4_0  = 0.0 #Gimbal interno
-du4_0 = 1.0
+du4_0 = 0.0
 
 u5_0  = 0.0 # Rotor
-du5_0 = 1.0
+du5_0 = 0.0
 
 q1d = 10*(pi/180)
 q2d = 10*(pi/180)
