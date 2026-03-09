@@ -1,0 +1,690 @@
+<!doctype html>
+
+<!--
+  This is a simple example / template impress.js slide show. The goal is to be
+  easier to read for a first timer than the official and very feature rich
+  demo by bartaz (http://bartaz.github.io/impress.js/). It's also a very
+  traditional presentation that looks like slides (square screens with bullet
+  points...), again to make a first timer feel more at home. From this simple
+  presentation you can then go on to more powerful impress.js presentations!
+  
+  This example is hopefully helpful for people that want to create both
+  simple and (eventually) awesome presentations in impress.js and comfortable
+  doing that directly in HTML.
+  
+  By: @henrikingo (Still based on the HTML from bartaz' demo.)  
+    
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Examen Predoctoral</title>
+    
+
+    <!--        
+        Impress.js doesn't depend on any external stylesheets. It adds all of the styles it needs for the
+        presentation to work. 
+        
+        However, some of the `extras/` modules do come with their own CSS, and we load
+        them here. You can read about each extras module separately in their directory.
+    -->
+
+
+    <!-- This file contains common styles for example presentations. -->
+    <link href="../../../Examen Predoctoral/css/impress-common.css" rel="stylesheet" />
+    <!--
+        This file contains styles specific for this example presentation. 
+    -->
+    <link href="../Examen Predoctoral/css/MyStyle.css" rel="stylesheet" />
+    
+</head>
+
+<!--
+    
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+    
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+    
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+    
+    Another class name on body element also depends on currently active presentation step.    
+-->
+<body class="impress-not-supported">
+
+
+
+<!--
+    This fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+
+
+<div id="impress"
+    data-transition-duration="1000"
+
+    data-width="1920px"
+    data-height="1080"
+    data-max-scale="3"u
+    data-min-scale="0"
+    data-perspective="1000">
+
+    
+
+    <!--  Portada  -->
+    <div class="step slide title fancy" data-x="0" data-y="0" data-rotate-y="">
+        <h1>Programa de Posgrado en Electrónica y Telecomunicaciones<br/>Centro de Investigación Científica y de Educación Superior de Ensenada, Baja California<br/></h1>
+        <h2>Examen Predoctoral</h2>
+            <h3>Diseño de un Giroscopio con Rotor Asimétrico</h3>
+        <h4>Alumno: M. en C. Fernando Luján Aguirre</h4>
+        <h5>Director de tesis: Dr. Luis Alejandro Márquez Martínez</h5>
+        <h6>14 de Agosto de 2025</h6>
+
+    </div>
+    <!--  Tabla de contenido  -->
+    <div id="toc" class="step slide fancy" data-rel-x="2000" data-rel-y="0">
+        <h1>Tabla de contenido</h1>
+        <div style="position: absolute; top: 6vw; left: 3vw;">
+        <ul>
+            <li><a href="#step-3">1. Motivación</a></li>
+            <li><a href="#step-10">2. Objetivos</a></li>
+            <li><a href="#step-12">3. Efecto Dzhannibekov y la integración en GCMRA</a></li>
+            <li><a href="#step-19">4. Obteción del los modelos parametrizados del GCMRA</a></li>
+            <li><a href="#step-29">5. Control de sistemas subactuados</a></li>
+            <li><a href="#step-38">6. Elección de la plataforma</a></li>
+
+        </ul>
+        </div>    
+    </div>
+    <!--  Motivación  -->
+    <div id class="step slide fancy subframe" data-rel-x="2100" data-y="0" data-z="0">
+      <h1>1. Motivación</h1>
+    </div>
+    <div class="step slide fancy sub" data-rel-x="2100" data-rel-y="0">
+        <h1> 1. Motivación </h1>
+        <p>Los giroscopios son mecanismo utilizados para determinar la orientiación del lugar en donde están montados. </br>
+            Su funcionamiento se basa en la conservación del momento angular, lo que les permite mantener una orientación continua en el espacio.<br/>
+        </p>
+        
+        <figure style="position: absolute; top: 450px; left: 650px; width: 300px;">
+        <img src="../Examen Predoctoral/Figuras/gyro2.jpeg" alt="Raytheon Anschutz" style="width: 100%;z-index: 1;">
+        <figcaption style="text-align: center; font-size: 2vw;">Raytheon Anschutz gyrocompass</figcaption>
+        </figure>
+
+        <figure style="position: absolute; top: 400px; left: 960px; width: 500px;z-index: 1;">
+        <img src="../Examen Predoctoral/Figuras/gyro.jpg" alt="torpedo" style="width: 100%;">
+        <figcaption style="text-align: center; font-size: 2vw;">Giroscopio de torpedo</figcaption>
+        </figure>
+
+
+        <figure style="position: absolute; bottom: 0px; right: 0px; width: 400px;z-index: 0;">
+        <img src="../Examen Predoctoral/Figuras/gyros_hubble.webp"  alt="Telescopio Hubble" style="width: 100%;">
+        <figcaption style="text-align: center; font-size: 2vw;">Telescopio Hubble</figcaption>
+        </figure>
+        
+
+        <div style="position: absolute; top: 25vw; left: 3vw;">
+            
+            <ul> Usados comunmente en:
+                <li>Aviones</li>
+                <li>Cohetes</li>
+                <li>Satélites y naves espaciales</li>
+                <li>Torpedos</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step slide fancy sub" data-rel-x="2100" data-rel-y="0">
+        <h1> 1. Motivación </h1>
+        <p> Si se les aplican pares estrategicamente a su estructura se puede controlar la orientación de la plataforma. A este tipo de giroscopios se les conoce como controladores de momento (CMGs)</br>
+            
+        <figure style="position: absolute; top: 350px; left: 50px; width: 600px;z-index: 1;">
+        <img src="../Examen Predoctoral/Figuras/ECP750.ppm"  alt="ECP" style="width: 100%;">
+        <figcaption style="text-align: center; font-size: 2vw;">ECP 750</figcaption>
+        </figure>
+
+        <figure style="position: absolute; top: 350px; right: 50px; width: 700px;z-index: 1;">
+        <img src="../Examen Predoctoral/Figuras/gyros_iss.jpg"  alt="ISS" style="width: 100%;">
+        <figcaption style="text-align: center; font-size: 2vw;">CMGs en la ISS</figcaption>
+        </figure>
+
+        
+
+    </div>
+    <!--Casos especiales-->
+    <div class="step slide fancy sub" data-rel-x="2100" data-rel-y="0"> 
+        <h1> 1. Motivación </h1>
+        <p>La dinámica de los CMGs se puede modelar desde la perspectiva de los sólidos rígidos en rotación. Casos interesantes de sólidos en rotación: </p>
+        <figure style="position: absolute; top: 400px; left: 100px; width: 350px;z-index: 1;">
+        <img src="../Examen Predoctoral/Figuras/trompo.jpg"  alt="Trompo" style="width: 100%;">
+        <figcaption style="text-align: center; font-size: 2vw;">Trompo</figcaption>
+        </figure>
+
+        <figure style="position: absolute; top: 300px; left: 1200px; width: 30%; height: 30%; margin: 0;">
+        <iframe src="https://www.youtube.com/embed/i-2bHV7XHq0?si=bh4yYyqlslditrf6&amp;start=15" 
+                frameborder="0" allowfullscreen 
+                style="width: 100%; height: 100%; display: block;"></iframe>
+        <figcaption style="text-align: center; font-size: 2vw; margin-top: 0.5em;">Peonza asimétrica</figcaption>
+        </figure>
+
+        <figure style="position: absolute; top: 650px; right: 700px; width: 30%; height: 30%; margin: 0;">
+        <iframe src="https://www.youtube.com/embed/Kwihc4kbNVA?si=1qMMR1vwBrQ3Bhut&amp;start=4&end=10" 
+        frameborder="0" allowfullscreen 
+        style="width: 100%; height: 100%; display: block;"></iframe>
+        <figcaption style="text-align: center; font-size: 2vw; margin-top: 0.5em;">Tipee top</figcaption>
+        </figure>
+  
+
+    </div>
+    <!--Efecto Dzhanibekov-->
+    <div class="step slide fancy sub" data-rel-x="2100" data-rel-y="0"> 
+        <h1> 1. Motivación </h1>
+        <p>La dinámica de los sólidos en rotación es compleja y no intuitiva.</br>Un fenómeno de particular interés es el efecto Dzhanibekov 
+        \[ \begin{aligned}
+        & \dot \Omega_1+\left(I_3-I_2\right) \Omega_2 \Omega_3 / I_1=0 \\
+        & \dot \Omega_2 +\left(I_1-I_3\right) \Omega_3 \Omega_1 / I_2=0 \\
+        & \dot \Omega_3 +\left(I_2-I_1\right) \Omega_1 \Omega_2 / I_3=0
+        \end{aligned} \]</br> 
+        \(\Omega\) es la velocidad angular, \(I_i\) (\(i=1,2,3 \)) son los momentos </br>de inercia de los ejes principales del sólido.</br>
+        Si \( I_1 < I_2 < I_3 \)  una rotación sobre el eje principal \( I_2 \) es inestable.</br>Una llave mariposa también exhibe este fenómeno.</p>
+        <figure style="position: absolute; top: 350px; left: 1300px; width: 25%; height: auto; margin: 0;">
+          <img src="../Examen Predoctoral/Figuras/raqueta.png" alt="" style="width: 100%; height: 100%; object-fit: contain;">
+          <figcaption>
+            Raqueta de tenis con 3 ejes principales de inercia diferentes.
+          </figcaption>
+        </figure>
+        
+    </div>
+
+    <!--Video Dzhanibekov-->
+    <div class = "step slide video" data-x="0" data-y="1300" data-z="0">
+        <iframe src="https://www.youtube.com/embed/1x5UiwEEvpQ?si=Le23o53KWCO1YxCJ" frameborder="0" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+    </div>
+    
+    <!--Aplicación en CMGs-->
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+        <h1> 1. Motivación </h1>
+        <p>El índice par-potencia de los CMGs puede ser mil veces mayor que el que puede proporcionar una rueda de reacción (Votel y Sinclair 2012). </br>Hay una clara tendencia en innovación en controladores y configuraciones de CMGs (Thieuw y Marcille 2007; Gui, Jin, y Xu 2014;
+            Mirshams y Khosrojerdi 2017; Evain et al. 2019; Curtis 2025).  </p>
+        <table style="position: absolute; top: 600px; left: 0px; width: 30%; height: auto; margin: 0;font-size: 0.8em">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Manufacturero</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>M50</td>
+              <td>Honeywell</td>
+              
+            </tr>
+            <tr>
+              <td>WHL 100</td>
+              <td>Veoware</td>
+              
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>CMG15-45S</td>
+              <td>Airbus</td>
+              
+            </tr>
+          </tfoot>
+        </table>
+        <table style="position: absolute; top: 600px; left: 800px; width: 55%; height: auto; margin: 0;font-size: 0.8em">
+          <thead>
+            <tr>
+              <th>Satélites con CMGs</th>
+              <th>Peso</th>
+              <th>Categoría</th>
+              <th>Año de lanzamiento</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bilsat</td>
+              <td>130Kg</td>
+              <td>Micro / -7</td>
+              <td>2003</td>
+            </tr>
+            <tr>
+              <td>Pleiades</td>
+              <td>1015Kg</td>
+              <td>Mediano</td>
+              <td>2011</td>   
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>SPOT-6 / -7</td>
+              <td>714Kg</td>
+              <td>Mediano</td>
+              <td>2012</td>
+              
+            </tr>
+          </tfoot>
+        </table>
+
+        
+    </div>
+
+    <!-- Objetivos -->
+    <div class = "step slide fancy subframe" data-rel-x="2100" data-y-rel="0" data-z="0">
+      <h1>2. Objetivos</h1>
+    </div>   
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0"> 
+        <h1> 2. Objetivos </h1>
+        
+        <div style="position: absolute; top: 6vw; left: 3vw;">
+            <ul>
+            <li>Objetivo general.</li>
+                <ul>
+                    <li> Diseñar, modelar y controlar un giroscopio controlador de momento con rotor asimétrico (GCMRA)</li>
+                </ul>
+            <li>Objetivos específicos</li>
+            <ul> 
+                <li> Obtener las ecuaciones de movimiento que describan el efecto Dzhanibekov</li>
+                <li> Obtener un diseño de un GCMRA parametrizado</li>
+                <li> Proponer controladores</li>
+                <li> Proponer escenario de aplicación</li>
+                <li> Iteración sobre el diseño del GCMRA y del controlador para la obtención de
+                resultados óptimos.</li>
+            </ul>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class = "step slide fancy subframe" data-rel-x="2100" data-y-rel="0" data-z="0">
+        <h1>3. Efecto Dzhannibekov y la integración en GCMRA</h1>
+    </div>
+
+    <!--  3. Efecto Dzhannibekov y la integración en GCMRA -->
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+        <h1>3. Efecto Dzhannibekov y la integración en GCMRA </h1>
+            <p style="width: 50%;">
+            \[ \begin{aligned}
+            & \dot \Omega_1+\left(I_3-I_2\right) \Omega_2 \Omega_3 / I_1= \tau_1, \\
+            & \dot \Omega_2 +\left(I_1-I_3\right) \Omega_3 \Omega_1 / I_2=\tau_2, \\
+            & \dot \Omega_3 +\left(I_2-I_1\right) \Omega_1 \Omega_2 / I_3=\tau_3.
+            \end{aligned} \] </br> 
+            Este modelo no considera la orientación del satélite ni los angulos de los gimbals. Por lo que hay que considerar cuaterniones o matrices de rotación. Este método es ampliamente usado.</br>
+            </p>
+            <p style="position: absolute;left:950px;width: 50%;">La ecuación dinámica de robots, por otro lado, sí considera todos los ángulos.</br>
+            \[  M(\theta)\ddot\theta + C (\theta, \dot\theta)\dot \theta  + g(\theta)= \tau\] </br>
+            \(M\) es la matriz de inercias, \(C\) es la matriz de Coriolis, \(g\) es el vector de gravedad y \(\tau\) es el vector de pares. En el caso de un vehículo espacial, o  de un mecanismo con los centros de masa en un mismo punto, \( g\) puede despreciarse.</br>
+            </p>
+            
+        </div>
+
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+        <h1>3. Efecto Dzhannibekov y la integración en GCMRA </h1>
+        <p>Hay varias metodologías para modelar un sistema dinámico de este tipo.</p>
+        <ul style="position: absolute; top: 200px; left: 0px;">
+            <li>Ecuación de Euler</li>
+                <ul>
+                  <li>Matrices de rotación (Arimoto, Suguru. 1996)</li>
+                  <li>Cuaterniones (Mirshams, M., y M. Khosrojerdi. 2017)</li>
+                </ul>
+                <li>Álgebra de cuaterniones (Möller, Michael, y Christoph Glocker. 2012) </li>
+                <li>Euler-Lagrange</li>
+                  <ul>
+                    <li>Matrices de rotación</li>
+                    <li>Álgebra geométrica</li>
+                </ul>
+        </ul>
+    </div>
+    <!--Objeto en rotación libre-->
+    <div class = "step slide video" data-x="0" data-y="2600" data-z="0">
+      <div>
+        <div class="iframe-wrapper">
+          <iframe src="https://fernandolujanaguirre.github.io/Projects/proyectos/Objeto_en_rotacion_libre_cuaterniones/ObjRotLib_cuaterniones.html" style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+          oading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+    <!--GCMRA + satélite-->
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+      <h1>3. Efecto Dzhannibekov y la integración en GCMRA</h1>
+      <figure style="position: absolute; top: 70px; left: 0px; width: 100%; height:100%; margin: 0;">
+        <img src="../Examen Predoctoral/Figuras/GCMRA.svg" style = "width: 100%; height: 100%; object-fit: contain;">
+        <figcaption></figcaption>
+      </figure>
+    </div>
+
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+      <h1>3. Efecto Dzhannibekov y la integración en GCMRA</h1>
+      <figure style="position: absolute; top: 70px; left: 0px; width: 100%; height:100%; margin: 0;">
+        <img src="../Examen Predoctoral/Figuras/SatGCM.svg" style = "width: 100%; height: 100%; object-fit: contain;">
+      <figcaption></figcaption>
+      </figure>
+    </div>
+
+    <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+      <h1>3. Efecto Dzhannibekov y la integración en GCMRA</h1>
+      <p>Faltan demostraciones sobre la influencia de la inercia en la dinámica de los  sólidos rígidos.<br>
+          Exise la solución a las ecuaciones de Euler, sin embargo, para objetos en rotación con más de tres grados de libertad es muy complejo obtener una solución analítica.
+      </p>
+      <div style="position:absolute;top:400px">
+        <ul>
+          <li>Sistemas mecánicos subactuados</li>
+          <ul>
+            <li>Acoplamiento inercial fuerte. Mismo número de actuadores que grados de libertad pasivos (Spong, M.W. 1994)
+</li>
+            <li>Acoplamiento inercial débil. Menor número de actuadores que grados de libertad pasivos</li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+
+  <!--4. Obteción del los modelos parametrizados del GCMRA-->
+  <div class = "step slide fancy subframe" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>4. Obteción del los modelos parametrizados del GCMRA</h1>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+    
+    <figure style="position: absolute; top: 50px; left: 150px; width: 90%; height: 90%; margin: 0;">
+      <img src="../Examen Predoctoral/Figuras/Modelado.svg" style="width: 100%;height: 100%;" alt="">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+    <p>Resumen del álgebra geométrica (Doran, Chris, y Anthony Lasenby. 2003)
+</p>
+    <figure style="position: absolute; top: 150px; left: 50px; width:90%; height: 90%; margin: 0;">
+      <img src="./Figuras/IntroAG.svg" style="width: 100%; height: 100%;">
+      <figcaption></figcaption>
+    </figure>
+
+  </div>
+
+  <div class = "step slide fancy sub" data-x="0" data-y="3900" data-z="0">
+    <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+    <p>Los elementos clave de esta álgebra son:</p>
+    <div style="position: absolute; top: 200px;">
+      <ul>
+      <li>
+        Rotores 
+      </li>
+      <li>
+        Velocidad angular
+      </li>
+      <li>
+        Enería cinética
+      </li>
+      <li>
+        Ecuaciones de movimiento para n sólidos concéntricos
+      </li>
+    </ul>
+    </div>
+    <div style="position: absolute;top: 450px;">
+      <p>\(R = cos(\theta/2) - \sin(\theta/2)B\) </br>
+          \( \Omega_{\mathcal{B}} = -2\dot{R} R^\dagger \) </br>
+          \(K = 1/2 \Omega_{\mathcal{B}}\cdot\mathcal{I}(\Omega_{\mathcal{B}}) \)
+      </p>
+    </div>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+  <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+  <p>Ecuaciones de movimiento para n sólidos concéntricos</p>
+  <figure style="position: absolute; top: 300px; left: 100px; width: 90%; height: auto; margin: 0;">
+    <img src="../Examen Predoctoral/Figuras/EcMov.svg" style="width:100%;height:100%" alt="">
+    <figcaption></figcaption>
+  </figure>
+  <div style="position: absolute;top:450px;width: 100%">
+<p>La metodología desarrollada fue sometida a la revista <i>Mechanism and Machine Theory</i></p>
+  </div>
+  <figure style="position: absolute; top: 650px; right:-300px; width: 30%; height: 30%; margin: 0;">
+    <img src="../Examen Predoctoral/Figuras/revista.jpg" style="width:50%;height:auto">
+    <figcaption></figcaption>
+  </figure>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+  <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+  <p>El manejo de un modelo de 5 grados de libertad es un gran reto.</p>
+  <div style="position: absolute;font-size: 1vw;top: 100px !important;">
+    <p>
+      \[ M = \begin{bmatrix}
+      m_{1, 1} & m_{1, 2} & m_{1, 3} & m_{1, 4} & m_{1, 5}\\
+      m_{2, 1} & m_{2, 2} & m_{2, 3} & m_{2, 4} & m_{2, 5}\\
+      m_{3, 1} & m_{3, 2} & m_{3, 3} & m_{3, 4} & m_{3, 5}\\
+      m_{4, 1} & m_{4, 2} & m_{4, 3} & m_{4, 4} & m_{4, 5}\\
+      m_{5, 1} & m_{5, 2} & m_{5, 3} & m_{5, 4} & m_{5, 5}
+      \end{bmatrix}\]
+    </p>
+  </div>
+  <figure style="position: absolute; top: 500px; left: 0px; width: 100%; height: auto; margin: 0;">
+    <img src="./Figuras/inverseM.svg" style="width: 100%; height:auto;">
+    <figcaption></figcaption>
+  </figure>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+    <p>Reducción de los términos menos significativos del sistema 
+    dinámico mediante análisis de sensibilidad</br>
+    Eliminión de los términos más pequeños de la matriz M</p>
+    <figure style="position: absolute; top: 350px; left: 300px; width: 70%; height:auto; margin: 0;">
+      <img src="./Figuras/terminosM.svg" style="width: 100%; height:auto;">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+  <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+  <figure style="position: absolute; top: 300px; left: 0px; width: 100%; height: 100%; margin: 0;">
+    <img src="./Figuras/terminosMreducidos.svg" style="width: 100%; height: 100%;">
+    <figcaption></figcaption>
+  </figure>  
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y="4000" data-z="0">
+  <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+  <figure style="position: absolute; top: 150px; left: 0px; width: 100%; height: 100%; margin: 0;">
+      <img src="./Figuras/lazoAbierto.svg" style="width: 100%; height: 100%;">
+      <figcaption></figcaption>
+    </figure>  
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+  <h1 style="font-size: 2.9vw!important;">4. Obteción del los modelos parametrizados del GCMRA</h1>
+  <figure style="position: absolute; top: 150px; left: 0px; width: 100%; height: 100%; margin: 0;">
+      <img src="./Figuras/lazoCerrado.svg" style="width: 100%; height: 100%;">
+      <figcaption></figcaption>
+    </figure>  
+  </div>
+
+  <!--5. Control de sistemas subactuados-->
+  <div class = "step slide fancy subframe" data-x="0" data-y="5200" data-z="0">
+  <h1>5. Control de sistemas subactuados</h1>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>5. Control de sistemas subactuados</h1>
+    <p>Para esta clase de sistemas no es viable aplicar controles (control algebráico) que requieran funciones explícitas de la ecuación </br>
+    \[  \dot x = f(x) + b u\] </br>
+    ya que implicaría la inversa de explícita \( M\). Una técnica ampliamente usada es la linealización parcial por realimentación. Se puede trabajar con un sistema implícito.</p>
+  </div>
+  
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>5. Control de sistemas subactuados</h1>
+    <figure style="position: absolute; top:50px; left:0px; width: 100%; height: 100%; margin: 0;">
+    <object type="image/svg+xml" data="../Examen Predoctoral/Figuras/Linealizacion1.svg" style="width: 100%; height: 100%;"></object>
+    <figcaption></figcaption>
+    </figure>
+    <div style="position:absolute; top:400px; left:450px; width: 100%;transform: scale(0.61); transform-origin: top left;">
+    <p>
+    Requiere  \(\bar{M}_{22}\) invertible <br>
+    <i>Strong inertial coupling:</i> Rango  \(M_{12}, \tilde{M}_{21} \geq\) número de grados de libertad pasivos <br>
+    si se cumple, entonces se usa la pseudoinversa  \(M^{\dagger}_{12}\)
+    </p>
+    <object type="image/svg+xml" data="Linealizacion1.svg" style="width:100%;height:100%;"></object>
+    </div>
+
+  </div>
+
+  <!--zoom-->
+  <div class="step" 
+     data-rel-x="0"
+     data-rel-y="0" 
+     data-scale="0.5"> <!-- Zoom 3x -->
+    <!--<img src="figura.svg" style="width:800px; height:auto;">-->
+  </div>
+
+  <!--ECP-->
+  <div class="step video" data-rel-x="2100" data-y-rel="0">
+    <div>
+    <div class="iframe-wrapper">
+    <iframe src="https://fernandolujanaguirre.github.io/Projects/Prototipo/ECP_Model.html" style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+    loading="lazy"></iframe>
+    </div>
+    </div>
+  </div>
+
+
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>5. Control de sistemas subactuados</h1>
+    <figure style="position: absolute; top:0px; left:0px; width: 100%; height: 100%; margin: 0;">
+      <object type="image/svg+xml" data="../Examen Predoctoral/Figuras/Linealizacion1-2.svg" style="width: 100%; height: 100%;"></object>
+      <figcaption></figcaption>
+    </figure>
+    <div style="position:absolute; top:320px; left:460px; width: 100%;transform: scale(0.59); transform-origin: top left;">
+      <p>
+        Requiere  \(\bar M_{22}\) y \(\bar M_{33}\) invertible <br>
+        <i>Weak inertial coupling:</i> Rango  \(M_{13}, \tilde{M}_{33}  = \) número de grados de libertad objetivo pasivos<br>
+        si se cumple, entonces se usa la pseudoinversa  \(M^{\dagger}_{13}\)
+      </p>
+      <object type="image/svg+xml" data="Linealizacion1.svg" style="width:100%;height:100%;"></object>
+    </div>
+  </div>
+  
+    <!--zoom-->
+    <div class="step" 
+    data-rel-x="0"
+    data-rel-y="0" 
+    data-scale="0.5"> <!-- Zoom 3x -->
+    <!--<img src="figura.svg" style="width:800px; height:auto;">-->
+    </div>
+  
+  <div class="step video" data-rel-x="2100" data-y-rel="0">
+    
+    <div>
+      <div class="iframe-wrapper">
+      <iframe src="https://fernandolujanaguirre.github.io/Projects/Prototipo/ForPresentations/SatWithGyro.html" style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+      loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>5. Control de sistemas subactuados</h1>
+    <p>Las literatura indica que los sistemas subactuados son una solución para el control de apuntado de  nano-satélites. </br>
+      El análisis de controlabilidad de este tipo de sistemas también contribuye al análisis de falla de sistemas completamente actuados y redundantes. </br>
+    </p>
+  </div>
+
+  <!--6. Elección de la plataforma -->
+  <div class = "step slide fancy subframe" data-x="0" data-y="6500" data-z="0">
+  <h1>6. Elección de la plataforma</h1>
+  </div>
+  
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+    <h1>6. Elección de la plataforma</h1>
+  <figure style="position: absolute; top: 100px; left: 150px; width: 100%; height:auto; margin: 0;">
+    <img src="../Examen Predoctoral/Figuras/plataformas.svg" style="position: absolute;width: 90%; height:auto;">
+    <figcaption></figcaption>
+  </figure>
+  </div>
+
+  <div class = "step slide fancy sub" data-rel-x="2100" data-y-rel="0" data-z="0">
+  <h1>6. Elección de la plataforma</h1>
+    <figure style="position: absolute; top: 100px; left: 150px; width: 100%; height:auto; margin: 0;">
+    <img src="../Examen Predoctoral/Figuras/painani.svg" style="position: absolute;width: 80%; height:auto;">
+    <figcaption></figcaption>
+  </figure>
+  </div>
+
+  <!--Referencnias-->
+  <div class = "step slide fancy subframe" data-rel-x="2100" data-rel-y="0" data-z="0">
+  <h1>Referencias</h1>
+  </div>
+
+    <div class = "step slide fancy sub" data-rel-x="2100" data-rel-y="0" data-z="0">
+    <h1>Referencias</h1>
+    <div style="position: absolute; top: 150px; left: 50px; width: 90%; height: 90%; margin: 0; font-size: 1.2vw;">
+      <ul>
+        <li>Votel, Ronny, y Doug Sinclair. 2012. “Comparison of Control Moment Gyros and Reaction Wheels for Small Earth-Observing Satellites”.</li>
+        <li>Thieuw, Alain, y Hervé Marcille. 2007. “Pleiades-HR CMGs-Based Attitude Control System Design, Development Status and Performances”. IFAC Proceedings Volumes 40(7): 834–39. doi:10.3182/20070625-5-FR-2916.00142.</li>
+        <li>Gui, Haichao, Lei Jin, y Shijie Xu. 2014. “Maneuver planning of a rigid spacecraft with two skew control moment gyros”. Acta Astronautica 104(1): 293–303. doi:https://doi.org/10.1016/j.actaastro.2014.08.010.</li>
+        <li>Mirshams, M., y M. Khosrojerdi. 2017. “Attitude Control of an Underactuated Spacecraft Using Quaternion Feedback Regulator and Tube-Based MPC”. Acta Astronautica 132: 143–49. doi:10.1016/j.actaastro.2016.11.033.</li>
+        <li>Evain, Hélène, Daniel Alazard, Mathieu Rognant, Thomas Solatges, Antoine Brunet, Jean Mignot, Nicolas Rodriguez, y Dias Ribeiro. 2019. “Satellite Attitude Control with a Six-Control Moment Gyro Cluster Tested under Microgravity Conditions”. En Melbourne.</li>
+        <li>Curtis, Hywel. 2025. “Reaction Wheels or Control Moment Gyroscopes - Which Should You Choose for Your next Space Mission?” satsearch blog. https://blog.satsearch.co/2025-06-06-reaction-wheels-or-control-moment-gyroscopes-which-should-you-choose-for-your-next-space-mission (el 11 de agosto de 2025).</li>
+        <li>Arimoto, Suguru. 1996. Control Theory of Nonlinear Mechanical Systems. USA: Oxford University Press, Inc.</li>
+        <li>Mirshams, M., y M. Khosrojerdi. 2017. “Attitude Control of an Underactuated Spacecraft Using Quaternion Feedback Regulator and Tube-Based MPC”. Acta Astronautica 132: 143–49. doi:10.1016/j.actaastro.2016.11.033.</li>
+        <li>Möller, Michael, y Christoph Glocker. 2012. “Rigid body dynamics with a scalable body, quaternions and perfect constraints”. Multibody System Dynamics 27(4): 437–54. doi:10.1007/s11044-011-9276-5.</li>
+      </ul>
+    </div>
+    </div>
+
+        <div class = "step slide fancy sub" data-rel-x="2100" data-rel-y="0" data-z="0">
+    <h1>Referencias</h1>
+    <div style="position: absolute; top: 150px; left: 50px; width: 90%; height: 90%; margin: 0; font-size: 1.2vw;">
+      <ul>
+        <li>Spong, M.W. 1994. “Partial feedback linearization of underactuated mechanical systems”. En Proceedings of IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS’94), , 314–21 vol.1. doi:10.1109/IROS.1994.407375.</li>
+        <li>Doran, Chris, y Anthony Lasenby. 2003. Geometric Algebra for Physicists. Cambridge University Press.</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+  <div id="overview" class="step" data-x="6300" data-y="3200" data-rotate-y = "0" data-scale="7.1" style="pointer-events: none;">
+  </div>
+
+</div>
+
+
+<div id="impress-toolbar"></div>
+
+<div class="impress-progressbar"><div></div></div>
+<div class="impress-progress"></div>
+
+<div id="impress-help"></div>
+
+<!-- Extra modules
+     Load highlight.js, mermaid.js, markdown.js and MathJax.js from extras.
+     If you're curious about details, these are initialized in src/plugins/extras/extras.js -->
+<script type="text/javascript" src="../impress.js/extras/highlight/highlight.pack.js"></script>
+<script type="text/javascript" src="../impress.js/extras/mermaid/mermaid.min.js"></script>
+<script type="text/javascript" src="../impress.js/extras/markdown/markdown.js"></script>
+<script type="text/javascript" src="../impress.js/extras/mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+<!--
+    To make all described above really work, you need to include impress.js in the page.
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. 
+-->
+<script type="text/javascript" src="../impress.js/js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
