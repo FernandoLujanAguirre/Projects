@@ -90,6 +90,15 @@
       background: rgb(228, 223, 223);
       border-radius: 10px;
     }
+        .parrafo {
+      font-size: 22px;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .parrafo.ecuacion {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -111,8 +120,10 @@
     <!-- Texto informativo -->
     <div id="texto-container">
       <h2>Position Control of the CMG ECP750</h2>
-      <p>In a similar way to the attitude control of a satellite, this system has been modeled using geometric algebra and Euler-Lagrange approaches. The CMG has four degrees of freedom, two of them active and two passive (underactuated). </p>
-      <p>The actual system is shown inn the picture below. In the animaion we see how the two outer gimbals move to the reference point. </p>
+      <p class="parrafo"><b> If the objects appear misaligned, refresh the page by pressing F5.</b></p>
+      <p class="parrafo">This project studies the position control of the CMG ECP750 experimental platform. The system was modeled using both geometric algebra and the Euler–Lagrange formalism, allowing a compact representation of the multibody dynamics.
+        The mechanism has four degrees of freedom, two actuated and two passive, forming an underactuated system. A control strategy was implemented to regulate the position of the outer gimbals.
+        The figure below shows the physical experimental setup. The accompanying animation illustrates the closed-loop behavior of the system, where the two outer gimbals move toward the desired reference position.</p>
       <div style="text-align: center;">
         <img src="../750.png" alt="Descripción de la imagen">
       </div>
