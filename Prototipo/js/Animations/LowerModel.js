@@ -107,30 +107,30 @@ function radToDeg(radians) { return radians * (180 / Math.PI); }
 const labelGroup = new THREE.Group();
 const points = new THREE.Group();
 const labelsData = await Labels(); // asumes que Labels() devuelve promesa
-const offset = grad2rad(5);
+const offset = grad2rad(2);
 const qd = new THREE.Euler(labelsData["q1d"], -labelsData["q2d"], 0, 'XYZ');
 const qd_offset = new THREE.Euler(labelsData["q1d"] + offset, -labelsData["q2d"] + offset, offset, 'XYZ');
 
 const labelPositions = [
   InitialPos.clone(),
-  new THREE.Vector3(0, 0.1, 0.2).applyEuler(qd_offset),
+  new THREE.Vector3(0, 0, 0.25).applyEuler(qd_offset),
   new THREE.Vector3(0, 0.0, 0.2).applyEuler(new THREE.Euler(grad2rad(-135), grad2rad(-45), 0, 'XYZ')),
 ];
 
 const label0 = CreateLabel('x:' + radToDeg(buscarDatos(0, "t1")).toFixed(2) + ' y:' + radToDeg(buscarDatos(0, "t2")).toFixed(2), 'black', '16px');
-const label1 = CreateLabel('x:' + radToDeg(labelsData["q1d"]).toFixed(2) + ' y:' + radToDeg(labelsData["q2d"]).toFixed(2), 'black', '16px');
+const label1 = CreateLabel('Desire position: <br> x:' + radToDeg(labelsData["q1d"]).toFixed(2) + ' y:' + radToDeg(labelsData["q2d"]).toFixed(2), 'black', '16px');
 const label2 = CreateLabel('x:-135' + ' y:45', 'black', '16px');
 
 const point = CreatePoint(0.005, 0, 0, 0.15, 'blue');
-const point1Coordinate = new THREE.Vector3(0, 0, 0.15).applyEuler(new THREE.Euler(labelsData["q1d"], -labelsData["q2d"], 0, 'XYZ'));
+const point1Coordinate = new THREE.Vector3(0, 0, 0.15).applyEuler(qd);
 const point1 = CreatePoint(0.02, point1Coordinate.x, point1Coordinate.y, point1Coordinate.z, 'green');
 const point2Coordinate = new THREE.Vector3(0, 0, 0.15).applyEuler(new THREE.Euler(grad2rad(-135), -grad2rad(45), 0, 'XYZ'));
 const point2 = CreatePoint(0.02, point2Coordinate.x, point2Coordinate.y, point2Coordinate.z, 'green');
 
 const Lines = new THREE.Group();
-const LabelLine = CreateLine(point1Coordinate, new THREE.Vector3(0, 0.1, 0.2).applyEuler(qd_offset));
-const Label2Line = CreateLine(point2Coordinate, new THREE.Vector3(0, 0.0, 0.2).applyEuler(new THREE.Euler(grad2rad(-135), grad2rad(-45), 0, 'XYZ')));
-Lines.add(LabelLine, Label2Line);
+const vector_Orientado = new THREE.Vector3(0, 0.0, 0.2).applyEuler(qd);
+const linea = CreateLine(0,0,0,vector_Orientado.x,vector_Orientado.y,vector_Orientado.z)
+Lines.add(linea);
 
 points.add(point0, point1);
 labelGroup.add(label0, label1);
@@ -140,7 +140,7 @@ const labelChildren = Array.from(labelGroup.children);
 const labelDOMs = labelChildren.map(c => c.element).filter(Boolean);
 labelDOMs.forEach(el => {
   el.style.position = 'absolute';
-  el.style.transform = 'translate(-50%, -50%)';
+  el.style.transform = 'translate(-0%, 0%)';
   container.appendChild(el);
 });
 
@@ -226,7 +226,7 @@ dataSelector.addEventListener('change', (event) => {
 // -----------------------------------------------------------------------------
 // Escena estática agregada una sola vez
 // -----------------------------------------------------------------------------
-scene.add(Luces, ambientLight, habitacion, points, axesHelperLast, satPivot);
+scene.add(Luces, ambientLight, habitacion, points, axesHelperLast, satPivot,Lines);
 
 // -----------------------------------------------------------------------------
 // Slider y Resizer

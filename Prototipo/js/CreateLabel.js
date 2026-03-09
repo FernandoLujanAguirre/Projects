@@ -12,7 +12,7 @@ import * as THREE from 'https://esm.sh/three@0.161.0';
 function CreateLabel(text,color='white', fontSize='16px') {
   const div = document.createElement('div');
   div.className = 'label';
-  div.textContent = text;
+  div.innerHTML = text;
   div.style.color = color;
   div.style.fontSize = fontSize;
   div.style.whiteSpace = 'nowrap';
