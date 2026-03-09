@@ -1,16 +1,16 @@
-import {Clock,AxesHelper} from "../../three.js-master/build/three.module.js";
+import {Clock,AxesHelper} from 'https://esm.sh/three@0.161.0';
 
 import { createCamera } from './camera.js';
 import { createScene } from './scene.js';
 import { createLights } from './lights.js';
 import { Resizer } from './Resizer.js';
 import { createRenderer } from './renderer.js';
-import { OrbitControls } from "../../three.js-master/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 import { createSphere } from "./createSphere.js";
 import { CreateTrail } from "./CreateTrail.js";
 import {buscarDatos} from "./buscar_datos.js"
-import { Group, Vector3 } from "../../three.js-master/build/three.module.js";
-import { Euler } from "../../three.js-master/build/three.module.js";
+import { Group, Vector3 } from 'https://esm.sh/three@0.161.0';
+import { Euler } from 'https://esm.sh/three@0.161.0';
 import { CreatePlane } from "./CreatePlane.js";
 
 const container = document.querySelector('#scene-container');

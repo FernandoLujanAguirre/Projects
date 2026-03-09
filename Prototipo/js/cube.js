@@ -3,7 +3,7 @@ import {
     MathUtils,
     Mesh,
     MeshStandardMaterial,
-  } from '../../three.js-master/build/three.module.js';
+  } from 'https://esm.sh/three@0.161.0';
   
   function createCube() {
     const geometry = new BoxBufferGeometry(2, 2, 2);

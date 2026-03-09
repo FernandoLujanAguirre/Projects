@@ -7,8 +7,7 @@ using SimulationLogs
 using JSON
 using DataFrames
 using PlotlyJS
-using ForwardDiff
-using Symbolics
+
 #PARAMETROS
     #simulacion
     t = 500.0
@@ -234,9 +233,9 @@ global sol = solve(prob,Tsit5(),tstops=savetimes)
 df=DataFrame(sol)
 json_str = JSON.json(df)
 
-open("./Prototipo/simulaciones/datos_GCMRA_PRIMSA.json", "w") do io
-    write(io, json_str)
-end  
+#open("./Prototipo/simulaciones/datos_GCMRA_PRIMSA.json", "w") do io
+#    write(io, json_str)
+#end  
 
 traces = Vector{AbstractTrace}() 
 #Posicones

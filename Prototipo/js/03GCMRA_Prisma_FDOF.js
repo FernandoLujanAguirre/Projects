@@ -1,4 +1,4 @@
-import {Clock,AxesHelper} from "../../../three.js-master/build/three.module.js";
+import {Clock,AxesHelper} from 'https://esm.sh/three@0.161.0';
 
 import { createCamera } from './camera.js';
 import { createScene } from './scene.js';
@@ -6,12 +6,12 @@ import { createLights } from './lights.js';
 import { createAmbientLights } from "./CreateAmbientLight.js";
 import { Resizer } from './Resizer.js';
 import { createRenderer } from './renderer.js';
-import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 import { createSphere } from "./createSphere.js";
 import { CreateTrail } from "./CreateTrail.js";
 import {buscarDatos} from "./buscar_datos_prisma_FDOF.js"
-import { Group, Vector3 } from "../../three.js-master/build/three.module.js";
-import { Euler } from "../../three.js-master/build/three.module.js";
+import { Group, Vector3 } from 'https://esm.sh/three@0.161.0';
+import { Euler } from 'https://esm.sh/three@0.161.0';
 import { CreatePlane } from "./CreatePlane.js";
 import { createCube } from "./CreateCube.js";
 import {importGLTF} from "./LoadGLTF.js"

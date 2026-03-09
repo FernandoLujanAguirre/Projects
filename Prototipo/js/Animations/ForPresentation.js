@@ -1,19 +1,19 @@
-//import { Clock, AxesHelper } from "../../../three.js-master/build/three.module.js";
-//import { Group, THREE.Vector3, Line, LineBasicMaterial, BufferGeometry } from "../../three.js-master/build/three.module.js";
-//import { Euler } from "../../three.js-master/build/three.module.js";
-//import { OrbitControls } from "../../../three.js-master/examples/jsm/controls/OrbitControls.js";
-// //import { GLTFLoader } from "../../three.js-master/examples/jsm/loaders/GLTFLoader.js";
-import { buscarDatos } from ".././buscar_datos_prisma_PrimerOrden.js";
-import { createRenderer } from '.././renderer.js';
-import { createCamera } from '.././camera.js';
-import { createScene } from '.././scene.js';
-import { createLights } from '.././lights.js';
-import { createAmbientLights } from ".././CreateAmbientLight.js";
-import { Resizer } from '.././Resizer.js';
-import { createSphere } from ".././createSphere.js";
-import { CreateTrail } from ".././CreateTrail.js";
-import { CreatePlane } from ".././CreatePlane.js";
-import { createCube } from ".././CreateCube.js";
+//import { Clock, AxesHelper } from 'https://esm.sh/three@0.161.0';
+//import { Group, THREE.Vector3, Line, LineBasicMaterial, BufferGeometry } from 'https://esm.sh/three@0.161.0';
+//import { Euler } from 'https://esm.sh/three@0.161.0';
+//import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+// //import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
+import { buscarDatos } from "../buscar_datos_prisma_PrimerOrden.js";
+import { createRenderer } from '../renderer.js';
+import { createCamera } from '../camera.js';
+import { createScene } from '../scene.js';
+import { createLights } from '../lights.js';
+import { createAmbientLights } from "../CreateAmbientLight.js";
+import { Resizer } from '../Resizer.js';
+import { createSphere } from "../createSphere.js";
+import { CreateTrail } from "../CreateTrail.js";
+import { CreatePlane } from "../CreatePlane.js";
+import { createCube } from "../CreateCube.js";
 
 
 //import * as THREE from 'https://unpkg.com/three@0.161.0/build/three.module.js';

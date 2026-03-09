@@ -1,4 +1,4 @@
-import { Clock } from '../../three.js-master/build/three.module.js';
+import { Clock } from 'https://esm.sh/three@0.161.0';
 
 const clock = new Clock();
 
