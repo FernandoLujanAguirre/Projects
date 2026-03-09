@@ -124,6 +124,16 @@
       min-height: 0;
       box-sizing: border-box;
     }
+
+    .parrafo {
+      font-size: 22px;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .parrafo.ecuacion {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -148,13 +158,19 @@
       </div>
     </div>
     
-        <div id="texto-container">
-      <h2>Attitude Control of a Satellite using a CMG as Only Actuator</h2>
-      <p>A 5 degree of freedom mechanical system is shown. Two degrees of freedom corresponding to the satellite (\(x\) and \(y\) coordinates) are controlled by two degrees of freedom CMG.</p>
-    <p> Geometric algebra and Euler-Lagrange approaches have been used to model the system. Within the framework  of robot equations </p>
-    <p> \(M \ddot{q} + C\dot{q} = \tau \), </p>
-    <p> control techniques can be applied to the system, without relying on exogenous tools such as quaternions </p>
-      <p>In this animation we see how the satellite orient to the reference position \(q^{ref}_x = -230^\circ \), \(q^{ref}_y = 80^\circ\) while the remaining coordinate velocity \(\dot q_z\) is acotaded.</p>
+      <div id="texto-container">
+        <h2>Attitude Control of a Satellite using a CMG as Only Actuator</h2>
+        <p class = "parrafo"> 
+          This project investigates the <b>nonlinear attitude dynamics</b> and <b>closed-loop control of a spacecraft actuated by a single Control Moment Gyroscope (CMG).</b> The system is modeled as a <b>multibody rigid-body structure </b> composed of three interconnected elements: the <b>spacecraft bus</b>, the <b>CMG gimbal frame</b>, and the <b>high-speed rotor</b>.
+          The resulting configuration leads to a <b>five-degree-of-freedom mechanical system</b>, where three generalized coordinates describe the <b>spacecraft attitude motion</b>, while the remaining coordinates correspond to the internal <b>CMG dynamics</b>. Since the CMG acts as the <b>sole actuator</b>, the spacecraft constitutes an <b>underactuated dynamical system</b>, making the control problem significantly more challenging than conventional reaction-wheel-based architectures.
+          The equations of motion were derived using both the <b>Euler–Lagrange formalism</b> and a <b>geometric algebra representation of rigid-body kinematics</b>, providing a compact and coordinate-consistent description of the multibody dynamics. This formulation allows the spacecraft–CMG system to be expressed in the classical <b>robotic manipulator form</b></p>
+        <p class="parrafo ecuacion"> 
+          \(M \ddot{\boldsymbol{q}} + C\dot{\boldsymbol{q}} = B \boldsymbol{\tau} \), </p>
+        <p class = "parrafo">
+          which enables the systematic application of <b>>nonlinear control methodologies for underactuated mechanical systems.</b>
+          The simulation implements a <b>closed-loop attitude control strategy</b> designed to stabilize the spacecraft around a desired reference orientation. Starting from an arbitrary initial condition, the controller drives the spacecraft attitude toward the commanded reference while maintaining the internal CMG dynamics bounded.
+          The animation illustrates the resulting behavior of the system: the spacecraft attitude converges smoothly to the target orientation, while the internal configuration variables remain dynamically stable throughout the maneuver. This demonstrates the feasibility of <b>single-CMG attitude control for spacecraft stabilization</b>, as well as the effectiveness of the nonlinear control approach applied to the coupled spacecraft–CMG dynamics.
+        </p>
       <div style="text-align: center; padding: 10px;">
     <button onclick="location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
       ⬅️ Back to index
